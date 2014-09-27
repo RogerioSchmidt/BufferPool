@@ -1,5 +1,3 @@
-BufferPool
-
 <b>Trabalho de Banco de Dados II</b>
 
 <i>Alunos:</i> Rogério Torchelsen, Ricardo Zanuzzo e Natan J. Mai.
