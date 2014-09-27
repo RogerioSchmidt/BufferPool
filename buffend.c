@@ -1,3 +1,5 @@
+//Buffer
+
 #include "buffend.h"
 // LEITURA DE DICIONARIO E ESQUEMA
 struct fs_objects leObjeto(char *nTabela){
