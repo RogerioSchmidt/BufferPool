@@ -1,4 +1,5 @@
 //BufferPool
+//asfasf
 
 #include "buffend.h"
 // LEITURA DE DICIONARIO E ESQUEMA
