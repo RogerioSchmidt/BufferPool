@@ -1,4 +1,4 @@
-//Buffer
+//BufferPool
 
 #include "buffend.h"
 // LEITURA DE DICIONARIO E ESQUEMA
