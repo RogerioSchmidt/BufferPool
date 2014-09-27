@@ -21,3 +21,5 @@
 #define ERRO_PAGINA_INVALIDA NULL
 #define ERRO_DE_LEITURA NULL
 #define ERRO_PARAMETRO NULL
+
+//tratamento
