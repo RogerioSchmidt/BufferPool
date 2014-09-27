@@ -2,7 +2,7 @@ Universidade Federal da Fronteira Sul – UFFS
 Curso: Ciência da Computação
 Componente Curricular: Banco de Dados II
 Professor: Dr. Denio Duarte
-Alunos: Gabrielle Almeida de Souza e Lais Borin
+Alunos: Natan J. Mai, Ricardo Zanuzzo, Rogerio T. Schmidt
 
 Introdução
 	Trabalho desenvolvido para o componente curricular de Banco de Dados II, sua finalidade é implementar a criação de tabelas, bem como a inclusão de tuplas em disco e remoção de tuplas do buffer complementando o que ja havia sido feito anteriormente.
