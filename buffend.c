@@ -1,5 +1,4 @@
 //BufferPool
-//Manda dnv
 
 #include "buffend.h"
 // LEITURA DE DICIONARIO E ESQUEMA
