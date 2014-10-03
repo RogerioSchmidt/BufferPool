@@ -26,6 +26,7 @@ int main(){
 	scanf("%d",&num);
 	
 	for(i=0; i<num; i++){
+		system("clear");
 		printf("\nDigite seu Nome:");
 		scanf("%s", nome);
 		printf("\nDigite sua Idade:");
