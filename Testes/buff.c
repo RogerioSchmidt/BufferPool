@@ -2,52 +2,60 @@
 
 
 int main(){
-	int erro,num,i/*,j*/;
+	int erro,num,n,i,j;
 	char tabela[20];
 	
 	char nome[20],sexo[10],end[40],idade[10],altura[10];
 	
 	
-	table *t = NULL;
+	table *t[10];
 	column *c = NULL;
-	printf("\nDigite o nome da Tabela: ");
-	scanf("%s", tabela);
-//	printf("\n%s", tabela);
 	
-	t = iniciaTabela(tabela);
-	t = adicionaCampo(t, "Nome", 'S', 20);
-	t = adicionaCampo(t, "Idade", 'I', (sizeof(int)));
-	t = adicionaCampo(t, "Sexo", 'C', (sizeof(char)));
-	t = adicionaCampo(t, "Endereco", 'S', 40);
-	t = adicionaCampo(t, "Altura", 'D', (sizeof(double)));
-	erro = finalizaTabela(t);
+	printf("Digite o numero de Tabelas a ser Criadas:");
+	scanf("%d",&n);
+	for(j=0;j<n;j++){
+		printf("\nDigite o nome da Tabela: ");
+		scanf("%s", tabela);
+		
+		t[j] = iniciaTabela(tabela);
+		t[j] = adicionaCampo(t[j], "Nome", 'S', 20);
+		t[j] = adicionaCampo(t[j], "Idade", 'I', (sizeof(int)));
+		t[j] = adicionaCampo(t[j], "Sexo", 'C', (sizeof(char)));
+		t[j] = adicionaCampo(t[j], "Endereco", 'S', 40);
+		t[j] = adicionaCampo(t[j], "Altura", 'D', (sizeof(double)));
+		erro = finalizaTabela(t[j]);
+		
+		printf("Digite o numero de cadastros a ser realizado:");
+		scanf("%d",&num);
+		
+		for(i=0; i<num; i++){
+			system("clear");
+			printf("\nDigite seu Nome:");
+			scanf("%s", nome);
+			printf("\nDigite sua Idade:");
+			scanf("%s", idade);
+			printf("\nDigite seu Sexo:");
+			scanf("%s", sexo);
+			printf("\nDigite seu Endereço:");
+			scanf("%s", end);
+			printf("\nDigite sua Altura:");
+			scanf("%s", altura);
+			
+			c = insereValor(c, "Nome", nome);
+			c = insereValor(c, "Idade", idade);
+			c = insereValor(c, "Sexo", sexo);
+			c = insereValor(c, "Endereco", end);
+			c = insereValor(c, "Altura", altura);
+			
 
-	printf("Digite o numero de cadastros a ser realizado:");
-	scanf("%d",&num);
-	
-	for(i=0; i<num; i++){
-		system("clear");
-		printf("\nDigite seu Nome:");
-		scanf("%s", nome);
-		printf("\nDigite sua Idade:");
-		scanf("%s", idade);
-		printf("\nDigite seu Sexo:");
-		scanf("%s", sexo);
-		printf("\nDigite seu Endereço:");
-		scanf("%s", end);
-		printf("\nDigite sua Altura:");
-		scanf("%s", altura);
-		
-		c = insereValor(c, "Nome", nome);
-		c = insereValor(c, "Idade", idade);
-		c = insereValor(c, "Sexo", sexo);
-		c = insereValor(c, "Endereco", end);
-		c = insereValor(c, "Altura", altura);
-		
-
-		erro = finalizaInsert(tabela, c);
-		
+			erro = finalizaInsert(tabela, c);
+			
+		}
 	}
+	
+	
+
+	
 	
 	
 
