@@ -12,11 +12,11 @@
 
    
 int main(){
-    int nrTabelas, indc, opcao = 999, opcaoT = 999;    
+    int nrTabelas, indc, erro, opcao = 999, opcaoT = 999;    
 
     nrTabelas = 4;
     table  *tab[nrTabelas];
-    column *colunas;
+    column *c = NULL;
 
     while(opcao != 0){
         printf(
@@ -29,7 +29,7 @@ int main(){
             " ------------------------ \n");
         scanf("%d", &opcao);
 
-        switch (opcao) { 
+        switch (opcao){ 
             case 1 :
 
                 /* Cria nrTabelas tabelas. */    
@@ -41,55 +41,64 @@ int main(){
                 for(indc = 0; indc < nrTabelas; indc++){
                     if(tab[indc] == ERRO_NOME_TABELA_INVALIDO){
                         printf("Erro: na função iniciaTabela(). Nome da tabela já existente.\n");
-                        return 0;
+                        return 0;   
                     }
                 }
 
                 //Carro
-                tab[0] = adicionaCampo(tab[0], "Rnbr"      , 'S' , 3);
-                tab[0] = adicionaCampo(tab[0], "Kms"       , 'I' , (sizeof(int)));
-                tab[0] = adicionaCampo(tab[0], "DataCompra", 'S' , 5);
-                tab[0] = adicionaCampo(tab[0], "Ano"       , 'S' , (sizeof(int)));
-                tab[0] = adicionaCampo(tab[0], "Modelo"    , 'I' , (sizeof(int)));
-                tab[0] = adicionaCampo(tab[0], "Motor"     , 'S' , 3);
-                if (finalizaTabela(tab[0]) != SUCCESS)  exit(1);
+                tab[0] = adicionaCampo(tab[0], "Rnbr", 'S', 20);
+                tab[0] = adicionaCampo(tab[0], "Kms", 'I', (sizeof(int)));
+                tab[0] = adicionaCampo(tab[0], "DataCompra", 'S', 10);
+                tab[0] = adicionaCampo(tab[0], "Ano", 'I', (sizeof(int)));
+                tab[0] = adicionaCampo(tab[0], "Modelo", 'I', (sizeof(int)));
+                tab[0] = adicionaCampo(tab[0], "Motor", 'D', (sizeof(double)));
+                erro = finalizaTabela(tab[0]);
+                
 
                 //Modelo
                 tab[1] = adicionaCampo(tab[1], "Modelo"    , 'S', 5);
                 tab[1] = adicionaCampo(tab[1], "NomeMod"   , 'S', 10);
                 tab[1] = adicionaCampo(tab[1], "Fabricante", 'S', 5);
-                if (finalizaTabela(tab[1]) != SUCCESS)  exit(1);
+                erro = finalizaTabela(tab[1]);
 
                 //Fabricante
                 tab[2] = adicionaCampo(tab[2], "FatCod"    , 'S', 5);
                 tab[2] = adicionaCampo(tab[2], "NomeFat"   , 'S', 15);
-                if (finalizaTabela(tab[2]) != SUCCESS)  exit(1);
+                erro = finalizaTabela(tab[2]);
 
                 //Proprietário
                 tab[3] = adicionaCampo(tab[3], "Rg"        , 'S', 10);    
                 tab[3] = adicionaCampo(tab[3], "Nome"      , 'S', 15);    
                 tab[3] = adicionaCampo(tab[3], "DataNasc"  , 'S', 8);    
                 tab[3] = adicionaCampo(tab[3], "Email"     , 'S', 20);    
-                if (finalizaTabela(tab[3]) != SUCCESS)  exit(1);
+                erro = finalizaTabela(tab[3]);
                 
-                colunas = insereValor(colunas, "Rnbr", "asdf");
-                finalizaInsert("Carro", colunas);
-
                 break;
 
-            case 3:
-                break;
-                /*printf(
+            case 2:
+                printf(
                     " ----------INSERIR--------- \n"
                     "| 0 - Sair                 |\n"
                     "| 1 - Tabela Carros        |\n"
                     "| 2 - Tabela Fabricante    |\n"
-                    "| 3 - Tabela Proprietario  |\n"
+                    "| 3 - Tabela Modelo        |\n"
+                    "| 4 - Tabela Proprietario  |\n"
                     " -------------------------- \n");
-                scanf("%d", &opcaoT);*/
-        }    
-    }
+                scanf("%d", &opcaoT);
 
+                if(opcaoT == 1){
+                    c = insereValor(c, "Rnbr", "Um");
+                    c = insereValor(c, "Kms", "12");
+                    c = insereValor(c, "DataCompra", "Um");
+                    c = insereValor(c, "Ano", "20");
+                    c = insereValor(c, "Modelo", "1");
+                    c = insereValor(c, "Motor", "1.5");
+                    
+                    erro = finalizaInsert("Carro", c);
+            
+            }    
+    }
+}
 
 /*
     t = iniciaTabela(tabela);
