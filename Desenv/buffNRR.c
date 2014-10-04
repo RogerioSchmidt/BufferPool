@@ -13,6 +13,7 @@
    
 int main(){
     int nrTabelas, indc, erro, opcao = 999, opcaoT = 999;    
+    char var[20];
 
     nrTabelas = 4;
     table  *tab[nrTabelas];
@@ -80,23 +81,60 @@ int main(){
                     " ----------INSERIR--------- \n"
                     "| 0 - Sair                 |\n"
                     "| 1 - Tabela Carros        |\n"
-                    "| 2 - Tabela Fabricante    |\n"
-                    "| 3 - Tabela Modelo        |\n"
+                    "| 2 - Tabela Modelo        |\n"
+                    "| 3 - Tabela Fabricante    |\n"
                     "| 4 - Tabela Proprietario  |\n"
                     " -------------------------- \n");
                 scanf("%d", &opcaoT);
 
                 if(opcaoT == 1){
-                    c = insereValor(c, "Rnbr", "Um");
-                    c = insereValor(c, "Kms", "12");
-                    c = insereValor(c, "DataCompra", "Um");
-                    c = insereValor(c, "Ano", "20");
-                    c = insereValor(c, "Modelo", "1");
-                    c = insereValor(c, "Motor", "1.5");
+
+                    printf("\nDigite o codigo do Carro (Rnbr):");
+                    scanf("%s", var);
+                    c = insereValor(c, "Rnbr", var);
+
+                    printf("\nDigite a  Quilometragem do Carro:");
+                    scanf("%s", var);
+                    c = insereValor(c, "Kms", var);
+
+                    printf("\nDigite a Data da Compra:");
+                    scanf("%s", var);
+                    c = insereValor(c, "DataCompra", var);
+
+                    printf("\nDigite o Ano do Carro:");
+                    scanf("%s", var);
+                    c = insereValor(c, "Ano", var);
+
+                    printf("\nDigite o codigo do Modelo do carro:");
+                    scanf("%s", var);
+                    c = insereValor(c, "Modelo", var);
+
+                    printf("\nDigite a potência Motor do carro:");
+                    scanf("%s", var);
+                    c = insereValor(c, "Motor", var);
                     
                     erro = finalizaInsert("Carro", c);
-            
-            }    
+
+                    break;
+                }    
+
+                else if(opcaoT == 2){
+                    printf("\nDigite o codigo do modelo do carro:");
+                    scanf("%s", var);
+                    c = insereValor(c, "Modelo", var);
+                    
+                    printf("\nDigite o Nome do Modelo:");
+                    scanf("%s", var);
+                    c = insereValor(c, "NomeMod", var);
+                    
+                    printf("\nDigite a Sigla do Fabricante:");
+                    scanf("%s", var);
+                    c = insereValor(c, "Fabricante", var);  
+
+                    erro = finalizaInsert("Modelo", c);
+
+                    break;
+                }
     }
 }
 
