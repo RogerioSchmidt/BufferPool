@@ -12,48 +12,72 @@
 
    
 int main(){
-    int nrTabelas, indc;    
+    int nrTabelas, indc, opcao = 999;    
 
     nrTabelas = 4;
     table  *tab[nrTabelas];
-    column *colunas;
+    column *col[nrTabelas];
 
-    /* Cria nrTabelas tabelas. */    
+    while(opcao != 0){
+        printf(
+            " ------------------------ \n"
+            "| 0 - Sair               |\n"
+            "| 1 - Iniciar Tabelas    |\n"
+            "| 2 - Consult Tabelas    |\n"
+            "| 3 - Remover Tabelas    |\n"
+            " ------------------------ \n");
+        scanf("%d", &opcao);
 
-    tab[0] = iniciaTabela("Carro");    
-    tab[1] = iniciaTabela("Modelo");    
-    tab[2] = iniciaTabela("Fabricante");    
-    tab[3] = iniciaTabela("Proprietário");    
+        switch (opcao) { 
+            case 1 :
 
-    for(indc = 0; indc < nrTabelas; indc++){
-        if(tab[indc] == ERRO_NOME_TABELA_INVALIDO){
-            printf("Erro: na função iniciaTabela(). Nome da tabela já existente.\n");
-            return 0;
-        }
+                /* Cria nrTabelas tabelas. */    
+                tab[0] = iniciaTabela("Carro");    
+                tab[1] = iniciaTabela("Modelo");    
+                tab[2] = iniciaTabela("Fabricante");    
+                tab[3] = iniciaTabela("Proprietário");    
+
+                for(indc = 0; indc < nrTabelas; indc++){
+                    if(tab[indc] == ERRO_NOME_TABELA_INVALIDO){
+                        printf("Erro: na função iniciaTabela(). Nome da tabela já existente.\n");
+                        return 0;
+                    }
+                }
+
+                //Carro
+                tab[0] = adicionaCampo(tab[0], "Rnbr"      , 'S' , 3);
+                tab[0] = adicionaCampo(tab[0], "Kms"       , 'I' , (sizeof(int)));
+                tab[0] = adicionaCampo(tab[0], "DataCompra", 'S' , 5);
+                tab[0] = adicionaCampo(tab[0], "Ano"       , 'S' , (sizeof(int)));
+                tab[0] = adicionaCampo(tab[0], "Modelo"    , 'I' , (sizeof(int)));
+                tab[0] = adicionaCampo(tab[0], "Motor"     , 'S' , 3);
+                if (finalizaTabela(tab[0]) != SUCCESS)  exit(1);
+
+                //Modelo
+                tab[1] = adicionaCampo(tab[1], "Modelo"    , 'S', 5);
+                tab[1] = adicionaCampo(tab[1], "NomeMod"   , 'S', 10);
+                tab[1] = adicionaCampo(tab[1], "Fabricante", 'S', 5);
+                if (finalizaTabela(tab[1]) != SUCCESS)  exit(1);
+
+                //Fabricante
+                tab[2] = adicionaCampo(tab[2], "FatCod"    , 'S', 5);
+                tab[2] = adicionaCampo(tab[2], "NomeFat"   , 'S', 15);
+                if (finalizaTabela(tab[2]) != SUCCESS)  exit(1);
+
+                //Proprietário
+                tab[3] = adicionaCampo(tab[3], "Rg"        , 'S', 10);    
+                tab[3] = adicionaCampo(tab[3], "Nome"      , 'S', 15);    
+                tab[3] = adicionaCampo(tab[3], "DataNasc"  , 'S', 8);    
+                tab[3] = adicionaCampo(tab[3], "Email"     , 'S', 20);    
+                if (finalizaTabela(tab[3]) != SUCCESS)  exit(1);
+                
+                break;
+
+            case 2:
+
+        }    
     }
 
-    //Carro
-    tab[0] = adicionaCampo(tab[0], "Rnbr"      , 'S' , 3);
-    tab[0] = adicionaCampo(tab[0], "Kms"       , 'I' , (sizeof(int)));
-    tab[0] = adicionaCampo(tab[0], "DataCompra", 'S' , 5);
-    tab[0] = adicionaCampo(tab[0], "Ano"       , 'S' , (sizeof(int)));
-    tab[0] = adicionaCampo(tab[0], "Modelo"    , 'I' , (sizeof(int)));
-    tab[0] = adicionaCampo(tab[0], "Motor"     , 'S' , 3);
-
-    //Modelo
-    tab[1] = adicionaCampo(tab[1], "Modelo"    , 'S', 5);
-    tab[1] = adicionaCampo(tab[1], "NomeMod"   , 'S', 10);
-    tab[1] = adicionaCampo(tab[1], "Fabricante", 'S', 5);
-
-    //Fabricante
-    tab[2] = adicionaCampo(tab[2], "FatCod"    , 'S', 5);
-    tab[2] = adicionaCampo(tab[2], "NomeFat"   , 'S', 15);
-
-    //Proprietário
-    tab[3] = adicionaCampo(tab[3], "Rg"        , 'S', 10);    
-    tab[3] = adicionaCampo(tab[3], "Nome"      , 'S', 15);    
-    tab[3] = adicionaCampo(tab[3], "DataNasc"  , 'S', 8);    
-    tab[3] = adicionaCampo(tab[3], "Email"     , 'S', 20);    
 
 /*
     t = iniciaTabela(tabela);
