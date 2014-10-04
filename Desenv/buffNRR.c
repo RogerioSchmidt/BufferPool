@@ -16,15 +16,16 @@ int main(){
 
     nrTabelas = 4;
     table  *tab[nrTabelas];
-    column *col[nrTabelas];
+    column *colunas;
 
     while(opcao != 0){
         printf(
             " ------------------------ \n"
             "| 0 - Sair               |\n"
             "| 1 - Iniciar Tabelas    |\n"
-            "| 2 - Consult Tabelas    |\n"
-            "| 3 - Remover Tabelas    |\n"
+            "| 2 - Inserir Valores    |\n"
+            "| 3 - Consult Tabelas    |\n"
+            "| 4 - Remover Tabelas    |\n"
             " ------------------------ \n");
         scanf("%d", &opcao);
 
@@ -71,17 +72,21 @@ int main(){
                 tab[3] = adicionaCampo(tab[3], "Email"     , 'S', 20);    
                 if (finalizaTabela(tab[3]) != SUCCESS)  exit(1);
                 
+                colunas = insereValor(colunas, "Rnbr", "asdf");
+                finalizaInsert("Carro", colunas);
+
                 break;
 
-            case 2:
-                printf(
+            case 3:
+                break;
+                /*printf(
                     " ----------INSERIR--------- \n"
                     "| 0 - Sair                 |\n"
                     "| 1 - Tabela Carros        |\n"
                     "| 2 - Tabela Fabricante    |\n"
                     "| 3 - Tabela Proprietario  |\n"
                     " -------------------------- \n");
-                scanf("%d", &opcaoT);
+                scanf("%d", &opcaoT);*/
         }    
     }
 
