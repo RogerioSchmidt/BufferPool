@@ -12,7 +12,7 @@
 
    
 int main(){
-    int nrTabelas, indc, opcao = 999;    
+    int nrTabelas, indc, opcao = 999, opcaoT = 999;    
 
     nrTabelas = 4;
     table  *tab[nrTabelas];
@@ -74,7 +74,14 @@ int main(){
                 break;
 
             case 2:
-
+                printf(
+                    " ----------INSERIR--------- \n"
+                    "| 0 - Sair                 |\n"
+                    "| 1 - Tabela Carros        |\n"
+                    "| 2 - Tabela Fabricante    |\n"
+                    "| 3 - Tabela Proprietario  |\n"
+                    " -------------------------- \n");
+                scanf("%d", &opcaoT);
         }    
     }
 
