@@ -1,4 +1,4 @@
-#include "buffend.h"
+#include "buffend.c"
 
 
 int main(){
