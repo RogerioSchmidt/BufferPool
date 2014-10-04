@@ -1,74 +1,96 @@
 #include "buffend.c"
+	
+void insere(int opc){
+	int nrTabelas, indc, erro, opcao = 999, opcaoT = 999;    
+    nrTabelas = 4;
+    table  *tab[nrTabelas];
+    column *c = NULL;
+	switch (opc){ 
+		case 1 :
+			/* Cria tabela carro. */    
+			if(tab[0] == ERRO_NOME_TABELA_INVALIDO){
+				return 0;   
+            }
+            tab[0] = iniciaTabela("Carro");  
+			tab[0] = adicionaCampo(tab[0], "Rnbr", 'S', 20);
+			tab[0] = adicionaCampo(tab[0], "Kms", 'I', (sizeof(int)));
+			tab[0] = adicionaCampo(tab[0], "DataCompra", 'S', 10);
+			tab[0] = adicionaCampo(tab[0], "Ano", 'I', (sizeof(int)));
+			tab[0] = adicionaCampo(tab[0], "Modelo", 'I', (sizeof(int)));
+			tab[0] = adicionaCampo(tab[0], "Motor", 'D', (sizeof(double)));
+			erro = finalizaTabela(tab[0]); 
+			c = insereValor(c, "Rnbr", "Um");
+			c = insereValor(c, "Kms", "12");
+			c = insereValor(c, "DataCompra", "Um");
+			c = insereValor(c, "Ano", "20");
+			c = insereValor(c, "Modelo", "1");
+			c = insereValor(c, "Motor", "1.5");
+			erro = finalizaInsert("Carro", c);
+			
+		case 2:
+			/* Cria tabela carro. */    
+			if(tab[1] == ERRO_NOME_TABELA_INVALIDO){
+				return 0;   
+            }
+            tab[1] = iniciaTabela("Modelo");  
+            tab[1] = adicionaCampo(tab[1], "Modelo"    , 'S', 5);
+            tab[1] = adicionaCampo(tab[1], "NomeMod"   , 'S', 10);
+            tab[1] = adicionaCampo(tab[1], "Fabricante", 'S', 5);
+			erro = finalizaTabela(tab[1]); 
+			c = insereValor(c, "Rnbr", "Um");
+			c = insereValor(c, "Kms", "12");
+			c = insereValor(c, "DataCompra", "Um");
+			c = insereValor(c, "Ano", "20");
+			c = insereValor(c, "Modelo", "1");
+			c = insereValor(c, "Motor", "1.5");
+			erro = finalizaInsert("Carro", c);
+			
+		}
+}
 
 
 int main(){
-	int erro=0;
-	char tabela[20];
-	table *t = NULL;
-	column *c = NULL;
-	printf("\nDigite o nome da Tabela: ");
-	scanf("%s", tabela);
-//	printf("\n%s", tabela);
-	
-	t = iniciaTabela(tabela);
-	t = adicionaCampo(t, "Nome", 'S', 20);
-	t = adicionaCampo(t, "Idade", 'I', (sizeof(int)));
-	t = adicionaCampo(t, "Sexo", 'C', (sizeof(char)));
-	t = adicionaCampo(t, "Obs", 'S', 40);
-	t = adicionaCampo(t, "Media", 'D', (sizeof(double)));
-	erro = finalizaTabela(t);
+	int opcao, opc;
+	system("clear");
+	printf(
+		" ----------TABELAS--------- \n"
+		"| 1 - Tabela Carros        |\n"
+		"| 2 - Tabela Fabricante    |\n"
+		"| 3 - Tabela Proprietario  |\n"
+		"| 4 - Modelo               |\n"
+		" -------------------------- \n");
 		
-	c = insereValor(c, "Nome", "Um");
-	c = insereValor(c, "Idade", "40");
-	c = insereValor(c, "Sexo", "F");
-	c = insereValor(c, "Obs", "Obs. Um");
-	c = insereValor(c, "Media", "2.5");
-	
-
-	c = insereValor(c, "Nome", "Dois");
-	c = insereValor(c, "Idade", "20");
-	c = insereValor(c, "Sexo", "M");
-	c = insereValor(c, "Obs", "Obs. Dois");
-	c = insereValor(c, "Media", "1.67");
-
-	c = insereValor(c, "Nome", "Três");
-	c = insereValor(c, "Idade", "30");
-	c = insereValor(c, "Sexo", "F");
-	c = insereValor(c, "Obs", "Obs. Três");
-	c = insereValor(c, "Media", "1.456");
-	
-	c = insereValor(c, "Nome", "quatrp");
-	c = insereValor(c, "Idade", "40");
-	c = insereValor(c, "Sexo", "F");
-	c = insereValor(c, "Obs", "Obs. Quatro");
-	c = insereValor(c, "Media", "1.456");
-
-	erro = finalizaInsert(tabela, c);
-	
-	/*
-	// PARA IMPRIMIR PÁGINA ---------------------------------------
-	//-------------------------------------------------------------
-	printf("\nPágina armazenada na estrutura column *pagina.\n");
-	for(j=0; j < objeto.qtdCampos*bufferpoll[0].nrec; j++){
-		
-		if(pagina[j].tipoCampo == 'S')
-			printf("%s: %s ", pagina[j].nomeCampo,pagina[j].valorCampo);
-		else if(pagina[j].tipoCampo == 'I'){
-			int *n = (int *)&pagina[j].valorCampo[0];
-			printf("%s: %d ",pagina[j].nomeCampo, *n);
-		}
-		else if(pagina[j].tipoCampo == 'C'){
-			printf("%s: %c ",pagina[j].nomeCampo, pagina[j].valorCampo[0]);
-		}
-		else if(pagina[j].tipoCampo == 'D'){
-			double *n = (double *)&pagina[j].valorCampo[0];
-			printf("%s: %f ",pagina[j].nomeCampo, *n);
-		}
-		printf("\n");
+	printf("\nDigite 1 para inserir valores.\nDigite 2 para imprimir uma tabela. \nDigite outro numero para sair.");
+	printf("\n\nOPÇÃO -> ");
+	scanf("%d", &opcao);
+	if(opcao==1){
+		system("clear");
+		printf(
+		" ----------TABELAS--------- \n"
+		"| 1 - Tabela Carros        |\n"
+		"| 2 - Tabela Fabricante    |\n"
+		"| 3 - Tabela Proprietario  |\n"
+		"| 4 - Modelo               |\n"
+		" -------------------------- \n");
+		printf("\n\nEscolha a Tabela para inserir valores (tuplas), dentre as opções acima -> ");
+		scanf("%d", &opc);
+		insere(opc);
+	}else if(opcao==2){
+		system("clear");
+		printf(
+		" ----------TABELAS--------- \n"
+		"| 1 - Tabela Carros        |\n"
+		"| 2 - Tabela Fabricante    |\n"
+		"| 3 - Tabela Proprietario  |\n"
+		"| 4 - Modelo               |\n"
+		" -------------------------- \n");
+		printf("\n\nEscolha a Tabela para imprimir, dentre as opções acima -> ");
+		scanf("%d", &opc);
+//		imprimi(& opc);
+	}else{
+		exit(1);
 	}
-	printf("\n\n");
+	return 0;	
 	
-	//-------------------------------------------------------------
-	*/
-	return 0;
-}		
+}
+	
