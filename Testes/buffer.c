@@ -1,12 +1,13 @@
-#include "buffend.h"
+#include "buffend.c"
 
 
 int main(){
-	int nrTabelas, indc, i, num,menu,erro;    
-	char rnbr[10],km[10],dataC[10],ano[10],codM[10],motor[10];
+	int nrTabelas, indc, i,j, num,menu,erro,imprime;  
+	char var[10];
+	/*char rnbr[10],km[10],dataC[10],ano[10],codM[10],motor[10];
 	char codModelo[10],nomeM[10],siglaF[10];
 	char sigraFabricante[10],nomeF[10];
-    char rg[10],nome[15],dataN[10],email[20]; 
+    char rg[10],nome[15],dataN[10],email[20]; */
 	
 
     nrTabelas = 4;
@@ -72,39 +73,55 @@ int main(){
 			switch (menu){
 				case 1:
 					printf("\nDigite o codigo do Carro (Rnbr):");
-					scanf("%s", rnbr);
-					printf("\nDigite a Kilometragem do Carro:");
-					scanf("%s", km);
-					printf("\nDigite a Data da Compra:");
-					scanf("%s", dataC);
-					printf("\nDigite o Ano do Carro:");
-					scanf("%s", ano);
-					printf("\nDigite o codigo do Modelo do carro:");
-					scanf("%s", codM);
-					printf("\nDigite a potência Motor do carro:");
-					scanf("%s", motor);
+					scanf("%s", var);
+					colunas = insereValor(colunas, "Rnbr", var);
 					
-					colunas = insereValor(colunas, "Rnbr", rnbr);
+					printf("\nDigite a Kilometragem do Carro:");
+					scanf("%s", var);
+					colunas = insereValor(colunas, "Kms", var);
+					
+					printf("\nDigite a Data da Compra:");
+					scanf("%s", var);
+					colunas = insereValor(colunas, "DataCompra", var);
+					
+					printf("\nDigite o Ano do Carro:");
+					scanf("%s", var);
+					colunas = insereValor(colunas, "Ano", var);
+					
+					printf("\nDigite o codigo do Modelo do carro:");
+					scanf("%s", var);
+					colunas = insereValor(colunas, "Modelo", var);
+					
+					printf("\nDigite a potência Motor do carro:");
+					scanf("%s", var);
+					colunas = insereValor(colunas, "Motor", var);
+					
+					/*colunas = insereValor(colunas, "Rnbr", rnbr);
 					colunas = insereValor(colunas, "Kms", km);
 					colunas = insereValor(colunas, "DataCompra", dataC);
 					colunas = insereValor(colunas, "Ano", ano);
 					colunas = insereValor(colunas, "Modelo", codM);
-					colunas = insereValor(colunas, "Motor", motor);
+					colunas = insereValor(colunas, "Motor", motor);*/
 
 					erro = finalizaInsert("Carro", colunas);	
 					
 					break;
 				case 2:
 					printf("\nDigite o codigo do modelo do carro:");
-					scanf("%s", codModelo);
-					printf("\nDigite o Nome do Modelo:");
-					scanf("%s", nomeM);
-					printf("\nDigite a Sigla do Fabricante:");
-					scanf("%s", siglaF);				
+					scanf("%s", var);
+					colunas = insereValor(colunas, "Modelo", var);
 					
-					colunas = insereValor(colunas, "Modelo", codModelo);
+					printf("\nDigite o Nome do Modelo:");
+					scanf("%s", var);
+					colunas = insereValor(colunas, "NomeMod", var);
+					
+					printf("\nDigite a Sigla do Fabricante:");
+					scanf("%s", var);
+					colunas = insereValor(colunas, "Fabricante", var);				
+					
+					/*colunas = insereValor(colunas, "Modelo", codModelo);
 					colunas = insereValor(colunas, "NomeMod", nomeM);
-					colunas = insereValor(colunas, "Fabricante", siglaF);
+					colunas = insereValor(colunas, "Fabricante", siglaF);*/
 
 					erro = finalizaInsert("Modelo", colunas);	
 					
@@ -112,12 +129,15 @@ int main(){
 					
 				case 3:	
 					printf("\nDigite a Sigla do Fabricante:");
-					scanf("%s", sigraFabricante);
-					printf("\nDigite o Nome do Fabricante:");
-					scanf("%s", nomeF);			
+					scanf("%s", var);
+					colunas = insereValor(colunas, "FatCod", var);
 					
-					colunas = insereValor(colunas, "FatCod", sigraFabricante);
-					colunas = insereValor(colunas, "NomeFat", nomeF);
+					printf("\nDigite o Nome do Fabricante:");
+					scanf("%s", var);
+					colunas = insereValor(colunas, "NomeFat", var);			
+					
+					/*colunas = insereValor(colunas, "FatCod", sigraFabricante);
+					colunas = insereValor(colunas, "NomeFat", nomeF);*/
 
 					erro = finalizaInsert("Fabricante", colunas);						
 					
@@ -125,18 +145,25 @@ int main(){
 					
 				case 4:  
 					printf("\nDigite RG do Proprietário do Veículo:");
-					scanf("%s", rg);
-					printf("\nDigite o Nome do Proprietário do Veículo:");
-					scanf("%s", nome);
-					printf("\nDigite a data de nascimento do Proprietário do Veículo:");
-					scanf("%s", dataN);
-					printf("\nDigite o Email do Proprietário do Veículo:");
-					scanf("%s", email);			
+					scanf("%s", var);
+					colunas = insereValor(colunas, "Rg", var);
 					
-					colunas = insereValor(colunas, "Rg", rg);
+					printf("\nDigite o Nome do Proprietário do Veículo:");
+					scanf("%s", var);
+					colunas = insereValor(colunas, "Nome", var);
+					
+					printf("\nDigite a data de nascimento do Proprietário do Veículo:");
+					scanf("%s", var);
+					colunas = insereValor(colunas, "DataNasc", var); 
+					
+					printf("\nDigite o Email do Proprietário do Veículo:");
+					scanf("%s", var);
+					colunas = insereValor(colunas, "Email", var);			
+					
+					/*colunas = insereValor(colunas, "Rg", rg);
 					colunas = insereValor(colunas, "Nome", nome);
 					colunas = insereValor(colunas, "DataNasc", dataN);  
-					colunas = insereValor(colunas, "Email", email);
+					colunas = insereValor(colunas, "Email", email);*/
 
 					erro = finalizaInsert("Proprietário", colunas);		
 					
@@ -155,7 +182,7 @@ int main(){
 		}
 	
 	
-	/*
+
 	printf("Deseja Imprimir as tableas criadas (0 = não 1, = sim)? \n");
 	scanf("%d",&imprime);
 	
@@ -165,7 +192,7 @@ int main(){
 			return 0;
 		}
 
-		struct fs_objects objeto = leObjeto(tabela);	
+		struct fs_objects objeto = leObjeto(tab[0]);	
 		
 		tp_table *esquema = leSchema(objeto);
 
@@ -205,10 +232,10 @@ int main(){
 		//column *tuplaE = excluirTuplaBuffer(bufferpoll, esquema, objeto, 0, 2); //pg, tupla
 		column *pagina = getPage(bufferpoll, esquema, objeto, 0);
 
-		if(tuplaE == ERRO_PARAMETRO){
+		/*if(tuplaE == ERRO_PARAMETRO){
 			printf("Erro, na função excluirTuplaBuffer(), problemas no parametro.\n");
 			return 0;
-		}
+		}*/
 		if(pagina == ERRO_PARAMETRO){
 			printf("Erro, na função getPage(), problemas no parametro.\n");
 			return 0;
@@ -238,6 +265,6 @@ int main(){
 	}
 	
 	//-------------------------------------------------------------
-*/
+
 	return 0;
 }		
