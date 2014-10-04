@@ -70,7 +70,7 @@ int main(){
 		"| 1 - Tabela Carros        |\n"
 		"| 2 - Tabela Fabricante    |\n"
 		"| 3 - Tabela Proprietario  |\n"
-		"| 4 - Modelo               |\n"
+		"| 4 - Tabela Modelo               |\n"
 		" -------------------------- \n");
 		printf("\n\nEscolha a Tabela para inserir valores (tuplas), dentre as opções acima -> ");
 		scanf("%d", &opc);
