@@ -1,8 +1,80 @@
-#include "buffend.c"
+#include "buffend.h"
 
+void imprime(char nomeTabela[] );
+
+void imprime(char nomeTabela[]) {
+	
+	int j,erro;
+
+	struct fs_objects objeto = leObjeto(nomeTabela);	
+	
+	tp_table *esquema = leSchema(objeto);
+
+	if(esquema == ERRO_ABRIR_ESQUEMA){
+		printf("Erro ao criar o esquema.\n");
+		return;
+	}
+
+	tp_buffer *bufferpoll = initbuffer();
+
+	if(bufferpoll == ERRO_DE_ALOCACAO){
+		printf("Erro ao alocar memória para o buffer.\n");
+		return;
+	}
+
+	erro = colocaTuplaBuffer(bufferpoll, 0, esquema, objeto);
+
+	if(erro != SUCCESS){
+		//printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
+		//return 0;
+	}
+	
+	erro = colocaTuplaBuffer(bufferpoll, 1, esquema, objeto);
+
+	if(erro != SUCCESS){
+		//printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
+		//return 0;
+	}
+	
+	erro = colocaTuplaBuffer(bufferpoll, 2, esquema, objeto);
+
+	if(erro != SUCCESS){
+		//printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
+		//return 0;
+	}
+	
+	column *pagina = getPage(bufferpoll, esquema, objeto, 0);
+
+	if(pagina == ERRO_PARAMETRO){
+		printf("Erro, na função getPage(), problemas no parametro.\n");
+		return ;
+	}
+	
+	// PARA IMPRIMIR PÁGINA ---------------------------------------
+	//-------------------------------------------------------------
+	printf("\nPágina armazenada na estrutura column *pagina.\n");
+	for(j=0; j < objeto.qtdCampos*bufferpoll[0].nrec; j++){
+		
+		if(pagina[j].tipoCampo == 'S')
+			printf("%s: %s ", pagina[j].nomeCampo,pagina[j].valorCampo);
+		else if(pagina[j].tipoCampo == 'I'){
+			int *n = (int *)&pagina[j].valorCampo[0];
+			printf("%s: %d ",pagina[j].nomeCampo, *n);
+		}
+		else if(pagina[j].tipoCampo == 'C'){
+			printf("%s: %c ",pagina[j].nomeCampo, pagina[j].valorCampo[0]);
+		}
+		else if(pagina[j].tipoCampo == 'D'){
+			double *n = (double *)&pagina[j].valorCampo[0];
+			printf("%s: %f ",pagina[j].nomeCampo, *n);
+		}
+		printf("\n");
+	}
+	printf("\n\n");
+}
 
 int main(){
-	int nrTabelas, indc, i,j, num,menu,erro,imprime;  
+	int nrTabelas, indc, i,num,menu,erro,aux;  
 	char var[10];
 	/*char rnbr[10],km[10],dataC[10],ano[10],codM[10],motor[10];
 	char codModelo[10],nomeM[10],siglaF[10];
@@ -18,7 +90,7 @@ int main(){
 		tab[0] = iniciaTabela("Carro");    
 		tab[1] = iniciaTabela("Modelo");    
 		tab[2] = iniciaTabela("Fabricante");    
-		tab[3] = iniciaTabela("Proprietário");    
+		tab[3] = iniciaTabela("Proprietario");    
 
 		for(indc = 0; indc < nrTabelas; indc++){
 			if(tab[indc] == ERRO_NOME_TABELA_INVALIDO){
@@ -165,7 +237,7 @@ int main(){
 					colunas = insereValor(colunas, "DataNasc", dataN);  
 					colunas = insereValor(colunas, "Email", email);*/
 
-					erro = finalizaInsert("Proprietário", colunas);		
+					erro = finalizaInsert("Proprietario", colunas);		
 					
 					break;
 
@@ -176,93 +248,66 @@ int main(){
 		
 			
 		}
-			if(erro != SUCCESS){
-			
-			return 0;
-		}
-	
-	
-
-	printf("Deseja Imprimir as tableas criadas (0 = não 1, = sim)? \n");
-	scanf("%d",&imprime);
-	
-	if(imprime==1){
 		if(erro != SUCCESS){
 			printf("Erro %d: na função finalizaInsert()\n", erro);
 			return 0;
 		}
-
-		struct fs_objects objeto = leObjeto(tab[0]);	
 		
-		tp_table *esquema = leSchema(objeto);
-
-		if(esquema == ERRO_ABRIR_ESQUEMA){
-			printf("Erro ao criar o esquema.\n");
-			return 0;
-		}
-
-		tp_buffer *bufferpoll = initbuffer();
-
-		if(bufferpoll == ERRO_DE_ALOCACAO){
-			printf("Erro ao alocar memória para o buffer.\n");
-			return 0;
-		}
-
-		erro = colocaTuplaBuffer(bufferpoll, 0, esquema, objeto);
-
-		if(erro != SUCCESS){
-			printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
-			return 0;
-		}
+		printf("Deseja Imprimir as tableas criadas (0 = não 1, = sim)? \n");
+		scanf("%d",&aux);
 		
-		erro = colocaTuplaBuffer(bufferpoll, 1, esquema, objeto);
+		if(aux==1){
+			system("clear");
+			menu=0;
+			printf(	"\nSelecione uma das Tabelas a para Imprimir\n"
+				" 1- Tabela Carro\n"
+				" 2- Tabela Modelo \n"
+				" 3- Tabela Fabricante \n"
+				" 4- Tabela Proprietário\n"
+				"\n=>");
+			scanf("%d",&menu);
+			switch (menu){
+				case 1:
+					if(tab[0]==NULL){
+						printf("\n Tabela Vazia \n");
+					}else{
+						imprime("Carro");
+					}
+					
+					break;
+				case 2:
+					if(tab[1]==NULL){
+						printf("\n Tabela Vazia \n");
+					}else{
+						imprime("Modelo");
+					}
+					break;
+					
+				case 3:	
+					if(tab[2]==NULL){
+						printf("\n Tabela Vazia \n");
+					}else{
+						imprime("Fabricante");
+					}
+					
+					break;
+					
+				case 4:  
+					if(tab[3]==NULL){
+						printf("\n Tabela Vazia \n");
+					}else{
+						imprime("Proprietario");
+					}
+				
+					
+					break;
 
-		if(erro != SUCCESS){
-			printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
-			return 0;
-		}
-		
-		erro = colocaTuplaBuffer(bufferpoll, 2, esquema, objeto);
-
-		if(erro != SUCCESS){
-			printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
-			return 0;
-		}
-		
-		//column *tuplaE = excluirTuplaBuffer(bufferpoll, esquema, objeto, 0, 2); //pg, tupla
-		column *pagina = getPage(bufferpoll, esquema, objeto, 0);
-
-		/*if(tuplaE == ERRO_PARAMETRO){
-			printf("Erro, na função excluirTuplaBuffer(), problemas no parametro.\n");
-			return 0;
-		}*/
-		if(pagina == ERRO_PARAMETRO){
-			printf("Erro, na função getPage(), problemas no parametro.\n");
-			return 0;
-		}
-		
-		// PARA IMPRIMIR PÁGINA ---------------------------------------
-		//-------------------------------------------------------------
-		printf("\nPágina armazenada na estrutura column *pagina.\n");
-		for(j=0; j < objeto.qtdCampos*bufferpoll[0].nrec; j++){
+					default:
+						printf("\nOpção Invalida!\n");
+					break;
+			}
 			
-			if(pagina[j].tipoCampo == 'S')
-				printf("%s: %s ", pagina[j].nomeCampo,pagina[j].valorCampo);
-			else if(pagina[j].tipoCampo == 'I'){
-				int *n = (int *)&pagina[j].valorCampo[0];
-				printf("%s: %d ",pagina[j].nomeCampo, *n);
-			}
-			else if(pagina[j].tipoCampo == 'C'){
-				printf("%s: %c ",pagina[j].nomeCampo, pagina[j].valorCampo[0]);
-			}
-			else if(pagina[j].tipoCampo == 'D'){
-				double *n = (double *)&pagina[j].valorCampo[0];
-				printf("%s: %f ",pagina[j].nomeCampo, *n);
-			}
-			printf("\n");
 		}
-		printf("\n\n");
-	}
 	
 	//-------------------------------------------------------------
 
