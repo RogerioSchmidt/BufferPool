@@ -76,7 +76,7 @@ void imprime(char nomeTabela[]) {
 int main(){
 	int nrTabelas, indc, i,num,menu,erro,aux;  
 	char var[10];
-	
+
 
     nrTabelas = 4;
     table  *tab[nrTabelas];
@@ -198,7 +198,7 @@ int main(){
 					
 					printf("\nDigite o Nome do Fabricante:");
 					scanf("%s", var);
-					colunas = insereValor(colunas, "NomeFat", var);								
+					colunas = insereValor(colunas, "NomeFat", var);			
 
 					erro = finalizaInsert("Fabricante", colunas);						
 					
@@ -220,7 +220,6 @@ int main(){
 					printf("\nDigite o Email do Proprietário do Veículo:");
 					scanf("%s", var);
 					colunas = insereValor(colunas, "Email", var);			
-					
 
 					erro = finalizaInsert("Proprietario", colunas);		
 					
@@ -242,56 +241,62 @@ int main(){
 		scanf("%d",&aux);
 		
 		if(aux==1){
-			system("clear");
 			menu=0;
-			printf(	"\nSelecione uma das Tabelas a para Imprimir\n"
-				" 1- Tabela Carro\n"
-				" 2- Tabela Modelo \n"
-				" 3- Tabela Fabricante \n"
-				" 4- Tabela Proprietário\n"
-				"\n=>");
-			scanf("%d",&menu);
-			switch (menu){
-				case 1:
-					if(tab[0]==NULL){
-						printf("\n Tabela Vazia \n");
-					}else{
-						imprime("Carro");
-					}
-					
-					break;
-				case 2:
-					if(tab[1]==NULL){
-						printf("\n Tabela Vazia \n");
-					}else{
-						imprime("Modelo");
-					}
-					break;
-					
-				case 3:	
-					if(tab[2]==NULL){
-						printf("\n Tabela Vazia \n");
-					}else{
-						imprime("Fabricante");
-					}
-					
-					break;
-					
-				case 4:  
-					if(tab[3]==NULL){
-						printf("\n Tabela Vazia \n");
-					}else{
-						imprime("Proprietario");
-					}
+			system("clear");
+			while(menu!=5){
 				
-					
-					break;
+				printf(	"\nSelecione uma das Tabelas a para Imprimir\n"
+					" 1- Tabela Carro\n"
+					" 2- Tabela Modelo \n"
+					" 3- Tabela Fabricante \n"
+					" 4- Tabela Proprietário\n"
+					" 5- Sair\n"
+					"\n=>");
+				scanf("%d",&menu);
+				switch (menu){
+					case 1:
+						if(tab[0]==NULL){
+							printf("\n Tabela Vazia \n");
+						}else{
+							imprime("Carro");
+						}
+						
+						break;
+					case 2:
+						if(tab[1]==NULL){
+							printf("\n Tabela Vazia \n");
+						}else{
+							imprime("Modelo");
+						}
+						break;
+						
+					case 3:	
+						if(tab[2]==NULL){
+							printf("\n Tabela Vazia \n");
+						}else{
+							imprime("Fabricante");
+						}
+						
+						break;
+						
+					case 4:  
+						if(tab[3]==NULL){
+							printf("\n Tabela Vazia \n");
+						}else{
+							imprime("Proprietario");
+						}
+						break;
+					case 5: 
+						printf("\nPrograma Finalizado!\n");
+						return 0;
 
-					default:
-						printf("\nOpção Invalida!\n");
-					break;
+						break;
+
+						default:
+							printf("\nOpção Invalida!\n");
+						break;
+				}
 			}
-			
 		}
 	
 	//-------------------------------------------------------------
