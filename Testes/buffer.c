@@ -76,10 +76,6 @@ void imprime(char nomeTabela[]) {
 int main(){
 	int nrTabelas, indc, i,num,menu,erro,aux;  
 	char var[10];
-	/*char rnbr[10],km[10],dataC[10],ano[10],codM[10],motor[10];
-	char codModelo[10],nomeM[10],siglaF[10];
-	char sigraFabricante[10],nomeF[10];
-    char rg[10],nome[15],dataN[10],email[20]; */
 	
 
     nrTabelas = 4;
@@ -190,10 +186,6 @@ int main(){
 					printf("\nDigite a Sigla do Fabricante:");
 					scanf("%s", var);
 					colunas = insereValor(colunas, "Fabricante", var);				
-					
-					/*colunas = insereValor(colunas, "Modelo", codModelo);
-					colunas = insereValor(colunas, "NomeMod", nomeM);
-					colunas = insereValor(colunas, "Fabricante", siglaF);*/
 
 					erro = finalizaInsert("Modelo", colunas);	
 					
@@ -206,10 +198,7 @@ int main(){
 					
 					printf("\nDigite o Nome do Fabricante:");
 					scanf("%s", var);
-					colunas = insereValor(colunas, "NomeFat", var);			
-					
-					/*colunas = insereValor(colunas, "FatCod", sigraFabricante);
-					colunas = insereValor(colunas, "NomeFat", nomeF);*/
+					colunas = insereValor(colunas, "NomeFat", var);								
 
 					erro = finalizaInsert("Fabricante", colunas);						
 					
@@ -232,10 +221,6 @@ int main(){
 					scanf("%s", var);
 					colunas = insereValor(colunas, "Email", var);			
 					
-					/*colunas = insereValor(colunas, "Rg", rg);
-					colunas = insereValor(colunas, "Nome", nome);
-					colunas = insereValor(colunas, "DataNasc", dataN);  
-					colunas = insereValor(colunas, "Email", email);*/
 
 					erro = finalizaInsert("Proprietario", colunas);		
 					
