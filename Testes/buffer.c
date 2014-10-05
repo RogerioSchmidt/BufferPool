@@ -73,17 +73,15 @@ void imprime(char nomeTabela[]) {
 }
 
     
-int doesFileExist(const char* filename)
-{
-  FILE* fptr = fopen(filename, "r");
-  if (fptr != NULL)
-  {
-    fclose(fptr);
-    printf("File exists\n");
-    return 1;
-  }
-  printf("File doesnt exist\n");
-  return 0;
+int doesFileExist(const char* filename){
+	FILE* fptr = fopen(filename, "r");
+	if (fptr != NULL){
+		fclose(fptr);
+//		printf("File exists\n");
+		return 1;
+	}
+//	printf("File doesnt exist\n");
+	return 0;
 }
 
 int main(){
@@ -97,7 +95,7 @@ int main(){
     
     object=doesFileExist("fs_object.dat");
     schema=doesFileExist("fs_schema.dat");
-
+	if(!object && !schema){
 		/* Cria nrTabelas tabelas. */    
 		tab[0] = iniciaTabela("Carro");    
 		tab[1] = iniciaTabela("Modelo");    
@@ -119,7 +117,7 @@ int main(){
 		tab[0] = adicionaCampo(tab[0], "Modelo", 'I', (sizeof(int)));
 		tab[0] = adicionaCampo(tab[0], "Motor", 'D', (sizeof(double)));
 		erro = finalizaTabela(tab[0]);
-		
+
 
 		//Modelo
 		tab[1] = adicionaCampo(tab[1], "Modelo"    , 'S', 5);
@@ -138,7 +136,7 @@ int main(){
 		tab[3] = adicionaCampo(tab[3], "DataNasc"  , 'S', 8);    
 		tab[3] = adicionaCampo(tab[3], "Email"     , 'S', 20);    
 		erro = finalizaTabela(tab[3]); 
-    
+    }
 	
 	
 	printf("\nDigite o numero de cadastros a ser realizado:");
@@ -248,10 +246,12 @@ int main(){
 		
 			
 		}
+/*
 		if(erro != SUCCESS){
 			printf("Erro %d: na função finalizaInsert()\n", erro);
-			return 0;
+			//return 0;
 		}
+*/
 		
 		printf("Deseja Imprimir as tableas criadas (0 = não 1, = sim)? \n");
 		scanf("%d",&aux);
