@@ -511,7 +511,9 @@ int finalizaInsert(char *nome, column *c)
 			t = 0;
 
 		if(auxT[t].tipo == 'S'){ // Grava um dado do tipo string.
-			if(sizeof(auxC->valorCampo) > auxT[t].tam){
+			
+			printf("AUXT: %d\n", auxT[t].tam);
+			if(sizeof(auxC->valorCampo) > auxT[t].tam && sizeof(auxC->valorCampo) != 8){
 				return ERRO_NO_TAMANHO_STRING;
 			}
 			if(strcmp(auxC->nomeCampo, auxT[t].nome) != 0){
