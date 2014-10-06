@@ -79,9 +79,9 @@ void excluir(char nomeTabela[]){
 	tp_table *esquema = leSchema(objeto);
 	tp_buffer *bufferpoll = initbuffer();
 
-	//erro = colocaTuplaBuffer(bufferpoll, 0, esquema, objeto);
-	//erro = colocaTuplaBuffer(bufferpoll, 1, esquema, objeto);
-	//erro = colocaTuplaBuffer(bufferpoll, 2, esquema, objeto);
+	erro = colocaTuplaBuffer(bufferpoll, 0, esquema, objeto);
+	erro = colocaTuplaBuffer(bufferpoll, 1, esquema, objeto);
+	erro = colocaTuplaBuffer(bufferpoll, 2, esquema, objeto);
 
 	column *tuplaE = excluirTuplaBuffer(bufferpoll, esquema, objeto, 0, 2); //pg, tupla
 	column *pagina = getPage(bufferpoll, esquema, objeto, 0);
