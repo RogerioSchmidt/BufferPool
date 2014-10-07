@@ -1,4 +1,4 @@
-/*/////////////////////////////////////////////////////////////////////////////////*
+/*/////////////////////////////////////////////////////////////////////////////////*/
 //  Alunos: Natan J. Mai, Ricardo Zanuzzo e Rogério Torchelsen                    //
 //  Disciplina: Banco de Dados II                                                 //      
 //  Curso: Ciência da Computação                                                  //      
@@ -14,10 +14,6 @@ void imprime(char nomeTabela[] );
 void excluir(char nomeTabela[] );
 
 void imprime(char nomeTabela[]) {
-    // ALTEREI AQUI PARA IMPRIMIR MAIS QUE 3 REGISTROS!!!
-    // TENTEI AVISAR MAS A FERRAMENTA DE COMUNICAÇÃO NÃO AJUDOU.
-    // PRECISA TESTAR MELHOR.
-    // NATAN.
 
     int j,erro, x;
     struct fs_objects objeto = leObjeto(nomeTabela);    
@@ -44,8 +40,8 @@ void imprime(char nomeTabela[]) {
     //erro = colocaTuplaBuffer(bufferpoll, 0, esquema, objeto);
 
     if(erro != SUCCESS){
-        printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
-        return 0;
+        //printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
+        //return ;
     }
     /*
     erro = colocaTuplaBuffer(bufferpoll, 1, esquema, objeto);
@@ -82,19 +78,21 @@ void imprime(char nomeTabela[]) {
     for(j=0; j < objeto.qtdCampos*bufferpoll[0].nrec; j++){
         
         if(pagina[j].tipoCampo == 'S')
-            printf("%s: %s ", pagina[j].nomeCampo,pagina[j].valorCampo);
+            printf("%s: %-20s ", pagina[j].nomeCampo,pagina[j].valorCampo);
         else if(pagina[j].tipoCampo == 'I'){
             int *n = (int *)&pagina[j].valorCampo[0];
-            printf("%s: %d ",pagina[j].nomeCampo, *n);
+            printf("%s: %-25d ",pagina[j].nomeCampo, *n);
         }
         else if(pagina[j].tipoCampo == 'C'){
-            printf("%s: %c ",pagina[j].nomeCampo, pagina[j].valorCampo[0]);
+            printf("%s: %-25c ",pagina[j].nomeCampo, pagina[j].valorCampo[0]);
         }
         else if(pagina[j].tipoCampo == 'D'){
             double *n = (double *)&pagina[j].valorCampo[0];
-            printf("%s: %f ",pagina[j].nomeCampo, *n);
+            printf("%s: %-25f ",pagina[j].nomeCampo, *n);
         }
-        printf("\n");
+        if(j>=1 && ((j+1)%objeto.qtdCampos)==0){
+			printf("\n");
+		}
     }
     printf("\n\n");
 }
@@ -352,9 +350,7 @@ int main(){
                     
                     break;
                 case 5: 
-                    printf("\nPrograma Finalizado!\n");
-                    //return 0;
-
+                   
                     break;
 
                 default:
