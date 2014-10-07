@@ -14,8 +14,12 @@ void imprime(char nomeTabela[] );
 void excluir(char nomeTabela[] );
 
 void imprime(char nomeTabela[]) {
-    
-    int j,erro;
+    // ALTEREI AQUI PARA IMPRIMIR MAIS QUE 3 REGISTROS!!!
+    // TENTEI AVISAR MAS A FERRAMENTA DE COMUNICAÇÃO NÃO AJUDOU.
+    // PRECISA TESTAR MELHOR.
+    // NATAN.
+
+    int j,erro, x;
     struct fs_objects objeto = leObjeto(nomeTabela);    
     
     tp_table *esquema = leSchema(objeto);
@@ -32,13 +36,18 @@ void imprime(char nomeTabela[]) {
         return;
     }
 
-    erro = colocaTuplaBuffer(bufferpoll, 0, esquema, objeto);
+    erro = SUCCESS;
+    for(x = 0; erro == SUCCESS; x++)
+        erro = colocaTuplaBuffer(bufferpoll, x, esquema, objeto);        
+    
+
+    //erro = colocaTuplaBuffer(bufferpoll, 0, esquema, objeto);
 
     if(erro != SUCCESS){
-        //printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
-        //return 0;
+        printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
+        return 0;
     }
-    
+    /*
     erro = colocaTuplaBuffer(bufferpoll, 1, esquema, objeto);
 
     if(erro != SUCCESS){
@@ -53,6 +62,13 @@ void imprime(char nomeTabela[]) {
         //return 0;
     }
     
+    erro = colocaTuplaBuffer(bufferpoll, 3, esquema, objeto);
+
+    if(erro != SUCCESS){
+        //printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
+        //return 0;
+    }*/
+
     column *pagina = getPage(bufferpoll, esquema, objeto, 0);
 
     if(pagina == ERRO_PARAMETRO){
@@ -82,6 +98,7 @@ void imprime(char nomeTabela[]) {
     }
     printf("\n\n");
 }
+
 void excluir(char nomeTabela[]){
     int erro=0;
     
@@ -319,36 +336,20 @@ int main(){
             scanf("%d",&menu);
             switch (menu){
                 case 1:
-                    if(tab[0]==NULL){
-                        printf("\n Tabela Vazia \n");
-                    }else{
-                        excluir("Carro");
-                    }
+                    excluir("Carro");
                     
                     break;
                 case 2:
-                    if(tab[1]==NULL){
-                        printf("\n Tabela Vazia \n");
-                    }else{
-                        excluir("Modelo");
-                    }
-                    break;
+                    excluir("Modelo");
                     
+                    break;
                 case 3: 
-                    if(tab[2]==NULL){
-                        printf("\n Tabela Vazia \n");
-                    }else{
-                        excluir("Fabricante");
-                    }
+                    excluir("Fabricante");
                     
                     break;
-                    
                 case 4:  
-                    if(tab[3]==NULL){
-                        printf("\n Tabela Vazia \n");
-                    }else{
-                        excluir("Proprietario");
-                    }
+                    excluir("Proprietario");
+                    
                     break;
                 case 5: 
                     printf("\nPrograma Finalizado!\n");
@@ -356,8 +357,9 @@ int main(){
 
                     break;
 
-                    default:
-                        printf("\nOpção Invalida!\n");
+                default:
+                    printf("\nOpção Invalida!\n");
+                    
                     break;
             }
         }
@@ -370,11 +372,6 @@ int main(){
         if(aux==1){
             menu=0;
 
-            if(tab[1] == NULL){
-                printf("NULO tab2\n");
-                return 0;
-            }
-            imprime("Modelo");
             system("clear");
             while(menu!=5){
                 
@@ -386,38 +383,25 @@ int main(){
                     " 5- Sair\n"
                     "\n=>");
                 scanf("%d",&menu);
+
                 switch (menu){
                     case 1:
-                        if(tab[0]==NULL){
-                            printf("\n Tabela Vazia \n");
-                        }else{
-                            imprime("Carro");
-                        }
+                        imprime("Carro");
                         
                         break;
                     case 2:
-                        if(tab[1]==NULL){
-                            printf("\n Tabela Vazia \n");
-                        }else{
-                            imprime("Modelo");
-                        }
+                        imprime("Modelo");                        
+
                         break;
                         
                     case 3: 
-                        if(tab[2]==NULL){
-                            printf("\n Tabela Vazia \n");
-                        }else{
-                            imprime("Fabricante");
-                        }
+                        imprime("Fabricante");                        
                         
                         break;
                         
                     case 4:  
-                        if(tab[3]==NULL){
-                            printf("\n Tabela Vazia \n");
-                        }else{
-                            imprime("Proprietario");
-                        }
+                        imprime("Proprietario");
+
                         break;
                     case 5: 
                         printf("\nPrograma Finalizado!\n");
@@ -425,8 +409,9 @@ int main(){
 
                         break;
 
-                        default:
-                            printf("\nOpção Invalida!\n");
+                    default:
+                        printf("\nOpção Invalida!\n");
+
                         break;
                 }
             }
