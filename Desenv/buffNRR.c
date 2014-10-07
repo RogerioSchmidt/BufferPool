@@ -70,37 +70,39 @@ void imprime(char nomeTabela[]) {
 }
 
 void excluir(char nomeTabela[]){
-    int erro=0;
+    int status, x, j;
     
     struct fs_objects objeto = leObjeto(nomeTabela);    
-    tp_table *esquema = leSchema(objeto);
+    tp_table  *esquema     = leSchema(objeto);
     tp_buffer *bufferpoll = initbuffer();
 
-    erro = colocaTuplaBuffer(bufferpoll, 0, esquema, objeto);
-    erro = colocaTuplaBuffer(bufferpoll, 1, esquema, objeto);
-    erro = colocaTuplaBuffer(bufferpoll, 2, esquema, objeto);
+    status = SUCCESS;
+    for(x = 0; status == SUCCESS; x++){
+        status = colocaTuplaBuffer(bufferpoll, x, esquema, objeto);    
+        printf("Status: %d\n", status);
+    }
 
-    column *tuplaE = excluirTuplaBuffer(bufferpoll, esquema, objeto, 0, 2); //pg, tupla
-    column *pagina = getPage(bufferpoll, esquema, objeto, 0);
+    //status = colocaTuplaBuffer(bufferpoll, 0, esquema, objeto);
+    //status = colocaTuplaBuffer(bufferpoll, 1, esquema, objeto);
+    //status = colocaTuplaBuffer(bufferpoll, 2, esquema, objeto);
+
+    column *tuplaE = excluirTuplaBuffer(bufferpoll, esquema, objeto, 0, x - 2); //pg, tupla
+    //column *pagina = getPage(bufferpoll, esquema, objeto, 0);
+
 
     if(tuplaE == ERRO_PARAMETRO){
-        //printf("Erro, na função excluirTuplaBuffer(), problemas no parametro.\n");
-        //return;
+        printf("Erro na função excluirTuplaBuffer(), problemas no parametro.\n");
+        return;
     }
-    if(pagina == ERRO_PARAMETRO){
-        //printf("Erro, na função getPage(), problemas no parametro.\n");
-        //return;
-    }
-    
-    if(erro != SUCCESS){
-
-    }
-    
+    /*if(pagina == ERRO_PARAMETRO){
+        printf("Erro na função getPage(), problemas no parametro.\n");
+        return;
+    }*/
+        
     // PARA IMPRIMIR TUPLA EXCLUIDA -----------------------------
     //-------------------------------------------------------------
     printf("\nTupla excluída do Buffer.\n");
-    int j = 0;
-    for(j=0; j < objeto.qtdCampos; j++){
+    for(j = 0; j < objeto.qtdCampos; j++){
         
         if(tuplaE[j].tipoCampo == 'S')
             printf("%s: %s ", tuplaE[j].nomeCampo,tuplaE[j].valorCampo);
