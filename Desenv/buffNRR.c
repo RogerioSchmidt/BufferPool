@@ -37,34 +37,6 @@ void imprime(char nomeTabela[]) {
         erro = colocaTuplaBuffer(bufferpoll, x, esquema, objeto);        
     
 
-    //erro = colocaTuplaBuffer(bufferpoll, 0, esquema, objeto);
-
-    if(erro != SUCCESS){
-        //printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
-        //return ;
-    }
-    /*
-    erro = colocaTuplaBuffer(bufferpoll, 1, esquema, objeto);
-
-    if(erro != SUCCESS){
-        //printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
-        //return 0;
-    }
-    
-    erro = colocaTuplaBuffer(bufferpoll, 2, esquema, objeto);
-
-    if(erro != SUCCESS){
-        //printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
-        //return 0;
-    }
-    
-    erro = colocaTuplaBuffer(bufferpoll, 3, esquema, objeto);
-
-    if(erro != SUCCESS){
-        //printf("Erro %d: na função colocaTuplaBuffer().\n", erro);
-        //return 0;
-    }*/
-
     column *pagina = getPage(bufferpoll, esquema, objeto, 0);
 
     if(pagina == ERRO_PARAMETRO){
