@@ -32,8 +32,8 @@ void menu(){
 
 	system("clear");
 	printf("\n=>Programa para Inserir/Consultar valores de Tabelas<=");
-	printf("\n\nDigite 1 para acessar o menu principal, outro numero para sair: ");
-	scanf("%d", &y);
+	printf("\n\n");
+	y=1;
 	while(y==1){
 		system("clear");
 		printf(" -> Tabela Carro\n"
@@ -227,7 +227,6 @@ void menu(){
 					break;
 			
 					default:
-			
 						printf("\nVoce digitou uma opcao invalida! \n\ndigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
 						scanf("%d", & continua);	
 					break;					//defoult
@@ -312,7 +311,7 @@ void insere(int menu){
     modelo=existeArquivo("Modelo.dat");
     fabricante=existeArquivo("Fabricante.dat");
     proprietario=existeArquivo("Proprietario.dat");
-    if(!object && !schema){
+    if(!object || !schema){
 
         //Carro
         if(!carro){
