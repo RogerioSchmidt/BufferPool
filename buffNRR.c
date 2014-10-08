@@ -31,9 +31,7 @@ void menu(){
 	int acao,  continua, opcao, y;
 
 	system("clear");
-	printf("\n=>Programa para Inserir/Consultar valores de Tabelas<=");
-	printf("\n\nDigite 1 para acessar o menu principal, outro numero para sair: ");
-	scanf("%d", &y);
+	y = 1;
 	while(y==1){
 		system("clear");
 		printf(" -> Tabela Carro\n"
