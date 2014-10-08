@@ -4,8 +4,6 @@
 //  Curso: Ciência da Computação                                                  //      
 //  Universidade Federal da Fronteira Sul                                         //      
 //                                                                                //      
-//                                                                                //      
-//                                                                                //      
 //////////////////////////////////////////////////////////////////////////////////*/
 
 #include <stdio.h>
@@ -13,7 +11,9 @@
 #include "buffend.h"
 #include "funcoesNRR.h"
 
-//---------------------------------------------------------------------------------------------
+/***********************************************************************************|
+|* FUNÇÃO: Utilizada no controle do 'menu', com todas as opcoes.                   */   
+
 void menu(){
     int acao,  continua, opcao, y;
     system("clear");
@@ -31,8 +31,8 @@ void menu(){
         scanf("%d",&opcao);
         system("clear");
 
-        if(opcao){
-                                   //inserir valores
+        if(opcao == 1){     //inserir valores
+                                   
             system("clear");
             printf(" 1- Tabela Carro\n"
                 " 2- Tabela Modelo \n"
@@ -56,7 +56,7 @@ void menu(){
                         scanf("%d", &continua);
                     }//while
                     
-                    break;  //caso 2
+                    break;  
 
                 case 2:
                     continua = 1;
@@ -65,9 +65,9 @@ void menu(){
                         system("clear");
                         printf("\nDigite 1 para inserir outra Tupla na mesma Tabela. Outro numero para voltar ao menu principal: ");
                         scanf("%d", &continua);
-                    }//while
+                    }
                     
-                    break;  //caso 2
+                    break;  
 
                 case 3:
                     continua = 1;
@@ -78,7 +78,7 @@ void menu(){
                         scanf("%d", &continua);
                     }//while
 
-                    break;      //caso 3
+                    break;     
 
                 case 4:
                     continua = 1;
@@ -87,11 +87,11 @@ void menu(){
                         system("clear");
                         printf("\nDigite 1 para inserir outra Tupla na mesma Tabela. Outro numero para voltar ao menu principal: ");
                         scanf("%d", &continua);
-                    }//while 
+                    }
                     
                     break;        
 
-                case 5:     //opcao sair do programa
+                case 5:     
                     return;
                     break;
         
@@ -166,12 +166,12 @@ void menu(){
                         printf("\nVoce digitou uma opcao invalida! \n\ndigite 1 para voltar ao menu de impressao, outro numero para o menu principal:");
                         scanf("%d", & continua);    
 
-                        break;                  //default
+                        break;  //default
                 }
             }
             
         }
-        else if(opcao == 4){ //sair
+        else if(opcao == 4){    //sair
             return;
         }
         else if(opcao == 3){
@@ -198,7 +198,7 @@ void menu(){
                         scanf("%d", &continua);
                         
                         break;
-                        
+
                     case 2:
                         system("clear");
                         excluir("Modelo");
@@ -231,19 +231,20 @@ void menu(){
                         printf("\nVoce digitou uma opcao invalida! \n\ndigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
                         scanf("%d", & continua);    
 
-                        break;                  //default
+                        break;   //default
                 }
             }
             
         }
         else{      //opcao invalida
             y = 1;
-        }
-        
-    }   //while topo
+        }  
+    } 
 }
 
-//---------------------------------------------------------------------------------------------
+/***********************************************************************************|
+|* FUNÇÃO: Utilizada na impressão das tabelas, conforme nomeTabela                 */   
+    
 void imprime(char nomeTabela[]) {
 
     int j,erro, x;
@@ -276,7 +277,6 @@ void imprime(char nomeTabela[]) {
     }
     
     // PARA IMPRIMIR PÁGINA
-   // printf("\nPágina armazenada na estrutura column *pagina.\n");
     for(j=0; j < objeto.qtdCampos*bufferpoll[0].nrec; j++){
         
         if(pagina[j].tipoCampo == 'S')
@@ -299,7 +299,9 @@ void imprime(char nomeTabela[]) {
     printf("\n\n");
 }
 
-//---------------------------------------------------------------------------------------------
+/***********************************************************************************|
+|* FUNÇÃO: Inserir tuplas na tabela selecionada conforme 'menu'.                   */   
+    
 void insere(int menu){
     int nrTabelas,erro, object, schema, carro, modelo, fabricante, proprietario;  
     char var[10];
@@ -355,6 +357,7 @@ void insere(int menu){
             erro = finalizaTabela(tab[3]); 
         }
     }
+
     switch (menu){
         case 1:
             printf("\nDigite o codigo do Carro (Rnbr):");
@@ -446,19 +449,23 @@ void insere(int menu){
     
 }
         
-//---------------------------------------------------------------------------------------------     
+/***********************************************************************************|
+|* FUNÇÃO: Verifica a existência do arquivo da tabela 'filename'.                  */   
+    
 int existeArquivo(const char* filename){
     FILE* fptr = fopen(filename, "r");
     if (fptr != NULL){
         fclose(fptr);
-//      printf("File exists\n");
+        
         return 1;
     }
-//  printf("File doesnt exist\n");
+
     return 0;
 }
 
-//---------------------------------------------------------------------------------------------
+/***********************************************************************************|
+|* FUNÇÃO: Exclui a tabela com 'nomeTabela'                                        */   
+    
 void excluir(char nomeTabela[]){
     int status, x, j;
     
