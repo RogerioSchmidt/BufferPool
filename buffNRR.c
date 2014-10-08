@@ -9,9 +9,9 @@
 //                                                                                //      
 //////////////////////////////////////////////////////////////////////////////////*/
 
-#include "buffend.h"
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "buffend.c"
 
 //funcoes
 void excluir(char nomeTabela[] );
@@ -21,15 +21,12 @@ void menu();
 void insere(int menu);
 
 int main(){
-
 	menu();
 	return 0;
 }
 
-
 void menu(){
 	int acao,  continua, opcao, y;
-
 	system("clear");
 	y = 1;
 	while(y==1){
@@ -60,7 +57,7 @@ void menu(){
 					while(continua==1){
 						insere(1);
 						system("clear");
-						printf("\ndigite 1 para inserir outra Tupla. Outro numero para voltar ao menu principal:");
+						printf("\nDigite 1 para inserir outra Tupla na mesma Tabela. Outro numero para voltar ao menu principal:");
 						scanf("%d", &continua);
 					}//while
 					
@@ -71,7 +68,7 @@ void menu(){
 					while(continua==1){
 						insere(2);
 						system("clear");
-						printf("\ndigite 1 para inserir outra Tupla. Outro numero para voltar ao menu principal: ");
+						printf("\nDigite 1 para inserir outra Tupla na mesma Tabela. Outro numero para voltar ao menu principal: ");
 						scanf("%d", &continua);
 					}//while
 					
@@ -82,7 +79,7 @@ void menu(){
 					while(continua==1){
 						insere(3);
 						system("clear");
-						printf("\ndigite 1 para inserir outra Tupla,  Outro numero para voltar ao menu principal: ");
+						printf("\nDigite 1 para inserir outra Tupla na mesma Tabela. Outro numero para voltar ao menu principal: ");
 						scanf("%d", &continua);
 					}//while
 				break;		//caso 3
@@ -92,7 +89,7 @@ void menu(){
 					while(continua==1){
 						insere(4);
 						system("clear");
-						printf("\ndigite 1 para inserir outra Tupla. Outro numero para voltar ao menu principal: ");
+						printf("\nDigite 1 para inserir outra Tupla na mesma Tabela. Outro numero para voltar ao menu principal: ");
 						scanf("%d", &continua);
 					}//while 
 					
@@ -119,7 +116,7 @@ void menu(){
 					" 3- Tabela Fabricante \n"
 					" 4- Tabela Proprietário\n"
 					" 5- Sair\n");
-				printf(	"\nEscolha a tabela, dentre uma das mencionadas acima para imprimi-la");
+				printf(	"\nEscolha a tabela para imprimir, dentre uma das mencionadas acima.");
 				printf("\nOpcao -> ");
 				scanf("%d",&acao);
 				system("clear");
@@ -128,7 +125,7 @@ void menu(){
 					case 1:
 						system("clear");
 						imprime("Carro");
-						printf("\ndigite 1 para voltar ao menu de impressao, outro numero para o menu principal:");
+						printf("\nDigite 1 para voltar ao menu de impressao, outro numero para o menu principal:");
 						scanf("%d", &continua);
 						
 					break;
@@ -136,7 +133,7 @@ void menu(){
 					case 2:
 						system("clear");
 						imprime("Modelo");
-						printf("\ndigite 1 para voltar ao menu de impressao, outro numero para o menu principal:");
+						printf("\nDigite 1 para voltar ao menu de impressao, outro numero para o menu principal:");
 						scanf("%d", &continua);
 					
 					break;
@@ -144,7 +141,7 @@ void menu(){
 					case 3:
 						system("clear");
 						imprime("Fabricante");
-						printf("\ndigite 1 para voltar ao menu de impressao, outro numero para o menu principal:");
+						printf("\nDigite 1 para voltar ao menu de impressao, outro numero para o menu principal:");
 						scanf("%d", &continua);
 
 					break;
@@ -152,7 +149,7 @@ void menu(){
 					case 4:
 						system("clear");
 						imprime("Proprietario");
-						printf("\ndigite 1 para voltar ao menu de impressao, outro numero para o menu principal:");
+						printf("\nDigite 1 para voltar ao menu de impressao, outro numero para o menu principal:");
 						scanf("%d", &continua);
 					
 					break;
@@ -191,7 +188,7 @@ void menu(){
 					case 1:
 						system("clear");
 						excluir("Carro");
-						printf("\ndigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
+						printf("\nDigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
 						scanf("%d", &continua);
 						
 					break;
@@ -199,7 +196,7 @@ void menu(){
 					case 2:
 						system("clear");
 						excluir("Modelo");
-						printf("\ndigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
+						printf("\nDigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
 						scanf("%d", &continua);
 					
 					break;
@@ -207,7 +204,7 @@ void menu(){
 					case 3:
 						system("clear");
 						excluir("Fabricante");
-						printf("\ndigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
+						printf("\nDigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
 						scanf("%d", &continua);
 
 					break;
@@ -215,7 +212,7 @@ void menu(){
 					case 4:
 						system("clear");
 						excluir("Proprietario");
-						printf("\ndigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
+						printf("\nDigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
 						scanf("%d", &continua);
 					
 					break;
@@ -273,11 +270,11 @@ void imprime(char nomeTabela[]) {
     
     // PARA IMPRIMIR PÁGINA ---------------------------------------
     //-------------------------------------------------------------
-    printf("\nPágina armazenada na estrutura column *pagina.\n");
+   // printf("\nPágina armazenada na estrutura column *pagina.\n");
     for(j=0; j < objeto.qtdCampos*bufferpoll[0].nrec; j++){
         
         if(pagina[j].tipoCampo == 'S')
-            printf("%s: %-20s ", pagina[j].nomeCampo,pagina[j].valorCampo);
+            printf("%s: %-25s ", pagina[j].nomeCampo,pagina[j].valorCampo);
         else if(pagina[j].tipoCampo == 'I'){
             int *n = (int *)&pagina[j].valorCampo[0];
             printf("%s: %-25d ",pagina[j].nomeCampo, *n);
