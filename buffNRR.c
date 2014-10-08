@@ -32,8 +32,8 @@ void menu(){
 
 	system("clear");
 	printf("\n=>Programa para Inserir/Consultar valores de Tabelas<=");
-	printf("\n\n");
-	y=1;
+	printf("\n\nDigite 1 para acessar o menu principal, outro numero para sair: ");
+	scanf("%d", &y);
 	while(y==1){
 		system("clear");
 		printf(" -> Tabela Carro\n"
@@ -108,7 +108,7 @@ void menu(){
 		
 					printf("\nVoce digitou uma opcao invalida! \n\nDigite qualquer numero para voltar ao menu principal... ");
 					scanf("%d", & continua);	
-				break;					//defoult
+				break;		//default
 			}	
 					
 		}else if(opcao==2){	//imprimir tabelas
@@ -226,10 +226,11 @@ void menu(){
 						return ;
 					break;
 			
-					default:
-						printf("\nVoce digitou uma opcao invalida! \n\ndigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
-						scanf("%d", & continua);	
-					break;					//defoult
+				default:
+					printf("\nVoce digitou uma opcao invalida! \n\ndigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
+					scanf("%d", & continua);	
+
+					break;					//default
 				}
 			}
 			
@@ -435,8 +436,8 @@ void insere(int menu){
                     return;
                     break;
 
-                    default:
-                        printf("\nOpção Invalida!\n");
+                default:
+                    printf("\nOpção Invalida!\n");
                     return;
                     break;
             }
