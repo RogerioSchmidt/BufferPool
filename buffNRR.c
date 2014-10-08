@@ -15,7 +15,7 @@
 
 //funcoes
 void excluir(char nomeTabela[] );
-int doesFileExist(const char* filename);
+int existeArquivo(const char* filename);
 void imprime(char nomeTabela[] );
 void menu();
 void insere(int menu);
@@ -306,12 +306,12 @@ void insere(int menu){
     table  *tab[nrTabelas];
     column *colunas = NULL;
     
-    object=doesFileExist("fs_object.dat");
-    schema=doesFileExist("fs_schema.dat");
-    carro=doesFileExist("Carro.dat");
-    modelo=doesFileExist("Modelo.dat");
-    fabricante=doesFileExist("Fabricante.dat");
-    proprietario=doesFileExist("Proprietario.dat");
+    object=existeArquivo("fs_object.dat");
+    schema=existeArquivo("fs_schema.dat");
+    carro=existeArquivo("Carro.dat");
+    modelo=existeArquivo("Modelo.dat");
+    fabricante=existeArquivo("Fabricante.dat");
+    proprietario=existeArquivo("Proprietario.dat");
     if(!object && !schema){
 
         //Carro
@@ -444,7 +444,7 @@ void insere(int menu){
             
 		}
 		
-int doesFileExist(const char* filename){
+int existeArquivo(const char* filename){
     FILE* fptr = fopen(filename, "r");
     if (fptr != NULL){
         fclose(fptr);

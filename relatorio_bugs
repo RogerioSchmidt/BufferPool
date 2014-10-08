@@ -1,2 +1,11 @@
 Relatório de Bugs e Erros.
 Contem a Descrição do problema, função que gerou, forma que foi gerado.
+
+06/10/2014
+Função: FinalizaInsert
+Arquivo: buffend.c
+Descrição:Não inseria tuplas em algumas tabelas, 
+quando testado em computadores com sistema 64 bits, devido ao controle localizado
+na linha 516 do arquivo 'buffend.c'. Alterei e coloquei uma condição a mais, 
+para que quando fosse 8 não acontecesse o erro. 
+
