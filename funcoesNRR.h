@@ -8,11 +8,17 @@
 //                                                                                //      
 //////////////////////////////////////////////////////////////////////////////////*/
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "funcoesNRR.h"
+//
+void menu();
 
-int main(){
-	menu();
-	return 0;
-}
+//
+void insere(int menu);
+
+//
+void imprime(char nomeTabela[] );
+
+//
+int existeArquivo(const char* filename);
+
+//
+void excluir(char nomeTabela[] );
