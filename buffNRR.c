@@ -115,7 +115,8 @@ void menu(){
 					" 2- Tabela Modelo \n"
 					" 3- Tabela Fabricante \n"
 					" 4- Tabela Proprietário\n"
-					" 5- Sair\n");
+                    " 5- Retornar ao menu Principal\n"
+					" 6- Sair\n");
 				printf(	"\nEscolha a tabela para imprimir, dentre uma das mencionadas acima.");
 				printf("\nOpcao -> ");
 				scanf("%d",&acao);
@@ -153,8 +154,12 @@ void menu(){
 						scanf("%d", &continua);
 					
 					break;
+                    
+                    case 5:
+                        continua=2;
+                        break;
 			
-					case 5:		//opcao sair do programa
+					case 6:		//opcao sair do programa
 						return ;
 					break;
 			
@@ -274,17 +279,17 @@ void imprime(char nomeTabela[]) {
     for(j=0; j < objeto.qtdCampos*bufferpoll[0].nrec; j++){
         
         if(pagina[j].tipoCampo == 'S')
-            printf("%s: %-25s ", pagina[j].nomeCampo,pagina[j].valorCampo);
+            printf("%s: %-15s ", pagina[j].nomeCampo,pagina[j].valorCampo);
         else if(pagina[j].tipoCampo == 'I'){
             int *n = (int *)&pagina[j].valorCampo[0];
-            printf("%s: %-25d ",pagina[j].nomeCampo, *n);
+            printf("%s: %-15d ",pagina[j].nomeCampo, *n);
         }
         else if(pagina[j].tipoCampo == 'C'){
-            printf("%s: %-25c ",pagina[j].nomeCampo, pagina[j].valorCampo[0]);
+            printf("%s: %-15c ",pagina[j].nomeCampo, pagina[j].valorCampo[0]);
         }
         else if(pagina[j].tipoCampo == 'D'){
             double *n = (double *)&pagina[j].valorCampo[0];
-            printf("%s: %-25f ",pagina[j].nomeCampo, *n);
+            printf("%s: %-15f ",pagina[j].nomeCampo, *n);
         }
         if(j>=1 && ((j+1)%objeto.qtdCampos)==0){
 			printf("\n");
@@ -460,12 +465,7 @@ void excluir(char nomeTabela[]){
     status = SUCCESS;
     for(x = 0; status == SUCCESS; x++){
         status = colocaTuplaBuffer(bufferpoll, x, esquema, objeto);    
-        printf("Status: %d\n", status);
     }
-
-    //status = colocaTuplaBuffer(bufferpoll, 0, esquema, objeto);
-    //status = colocaTuplaBuffer(bufferpoll, 1, esquema, objeto);
-    //status = colocaTuplaBuffer(bufferpoll, 2, esquema, objeto);
 
     column *tuplaE = excluirTuplaBuffer(bufferpoll, esquema, objeto, 0, x - 2); //pg, tupla
     //column *pagina = getPage(bufferpoll, esquema, objeto, 0);
