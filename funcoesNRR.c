@@ -445,6 +445,12 @@ void insere(int menu){
 
             break;
     }
+
+    if(!erro){
+        printf("Erro na criação das tabelas!\n");
+        return;
+    }
+
     
 }
         
