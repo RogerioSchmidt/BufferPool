@@ -49,7 +49,7 @@ void menu(){
 
                 case 1:     //cadastrar usuarios
                     continua = 1;
-                    while(continua){
+                    while(continua==1){
                         insere(1);
                         system("clear");
                         printf("\nDigite 1 para inserir outra Tupla na mesma Tabela. Outro numero para voltar ao menu principal:");
@@ -105,7 +105,7 @@ void menu(){
         else if(opcao == 2){ //imprimir tabelas
         
             continua = 1;     
-            while(continua){
+            while(continua==1){
         
                 system("clear");
                 printf(" 1- Tabela Carro\n"
@@ -177,7 +177,7 @@ void menu(){
         else if(opcao == 3){
             
             continua = 1;     
-            while(continua){
+            while(continua==1){
                 system("clear");
                 printf(" 1- Tabela Carro\n"
                     " 2- Tabela Modelo \n"
@@ -305,8 +305,7 @@ void imprime(char nomeTabela[]) {
 void insere(int menu){
     int nrTabelas,erro, object, schema, carro, modelo, fabricante, proprietario;  
     char var[10];
-
-    nrTabelas = 4;
+	nrTabelas = 4;
     table  *tab[nrTabelas];
     column *colunas = NULL;
     
