@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "buffend.h"
+#include "buffend.c"
 #include "funcoesNRR.h"
 
 /***********************************************************************************|
@@ -325,24 +325,24 @@ void insere(int menu){
             tab[0] = adicionaCampo(tab[0], "DataCompra" , 'S', 10);
             tab[0] = adicionaCampo(tab[0], "Ano"        , 'I', (sizeof(int)));
             tab[0] = adicionaCampo(tab[0], "Modelo"     , 'I', (sizeof(int)));
-            tab[0] = adicionaCampo(tab[0], "Motor"      , 'D', (sizeof(double)));
+            tab[0] = adicionaCampo(tab[0], "Motor"      , 'S', 10);
             erro = finalizaTabela(tab[0]);
         }
 
         //Modelo
         if(!modelo){
             tab[1] = iniciaTabela("Modelo"); 
-            tab[1] = adicionaCampo(tab[1], "Modelo"     , 'S', 5);
-            tab[1] = adicionaCampo(tab[1], "NomeMod"    , 'S', 10);
-            tab[1] = adicionaCampo(tab[1], "Fabricante" , 'S', 5);
+            tab[1] = adicionaCampo(tab[1], "Modelo"     , 'S', 10);
+            tab[1] = adicionaCampo(tab[1], "NomeMod"    , 'S', 20);
+            tab[1] = adicionaCampo(tab[1], "Fabricante" , 'S', 20);
             erro = finalizaTabela(tab[1]);
         }
 
         //Fabricante
         if(!fabricante){
             tab[2] = iniciaTabela("Fabricante"); 
-            tab[2] = adicionaCampo(tab[2], "FatCod"    , 'S', 5);
-            tab[2] = adicionaCampo(tab[2], "NomeFat"   , 'S', 15);
+            tab[2] = adicionaCampo(tab[2], "FatCod"    , 'S', 10);
+            tab[2] = adicionaCampo(tab[2], "NomeFat"   , 'S', 20);
             erro = finalizaTabela(tab[2]);
         }
 
@@ -351,7 +351,7 @@ void insere(int menu){
             tab[3] = iniciaTabela("Proprietario");
             tab[3] = adicionaCampo(tab[3], "Rg"        , 'S', 10);    
             tab[3] = adicionaCampo(tab[3], "Nome"      , 'S', 15);    
-            tab[3] = adicionaCampo(tab[3], "DataNasc"  , 'S', 8);    
+            tab[3] = adicionaCampo(tab[3], "DataNasc"  , 'S', 15);    
             tab[3] = adicionaCampo(tab[3], "Email"     , 'S', 20);    
             erro = finalizaTabela(tab[3]); 
         }
@@ -360,8 +360,8 @@ void insere(int menu){
     switch (menu){
         case 1:
             printf("\nDigite o codigo do Carro (Rnbr):");
-            setbuf(stdin, NULL);
-            fgets(var, 20, stdin);
+            getchar();
+            scanf("%[^\n]", var);
             colunas = insereValor(colunas, "Rnbr", var);
             
             printf("\nDigite a Kilometragem do Carro:");
@@ -369,8 +369,8 @@ void insere(int menu){
             colunas = insereValor(colunas, "Kms", var);
             
             printf("\nDigite a Data da Compra:");
-            setbuf(stdin, NULL);
-            fgets(var, 10, stdin);
+			getchar();
+            scanf("%[^\n]", var);
             colunas = insereValor(colunas, "DataCompra", var);
             
             printf("\nDigite o Ano do Carro:");
@@ -382,7 +382,8 @@ void insere(int menu){
             colunas = insereValor(colunas, "Modelo", var);
             
             printf("\nDigite a potência Motor do carro:");
-            scanf("%s", var);
+            getchar();
+            scanf("%[^\n]", var);
             colunas = insereValor(colunas, "Motor", var);
             
             erro = finalizaInsert("Carro", colunas);    
@@ -391,15 +392,18 @@ void insere(int menu){
 
         case 2:
             printf("\nDigite o codigo do modelo do carro:");
-            scanf("%s", var);
+            getchar();
+            scanf("%[^\n]", var);
             colunas = insereValor(colunas, "Modelo", var);
             
             printf("\nDigite o Nome do Modelo:");
-            scanf("%s", var);
+            getchar();
+            scanf("%[^\n]", var);
             colunas = insereValor(colunas, "NomeMod", var);
             
             printf("\nDigite a Sigla do Fabricante:");
-            scanf("%s", var);
+            getchar();
+            scanf("%[^\n]", var);
             colunas = insereValor(colunas, "Fabricante", var);              
 
             erro = finalizaInsert("Modelo", colunas);   
@@ -408,11 +412,13 @@ void insere(int menu){
             
         case 3: 
             printf("\nDigite a Sigla do Fabricante:");
-            scanf("%s", var);
+            getchar();
+            scanf("%[^\n]", var);
             colunas = insereValor(colunas, "FatCod", var);
             
             printf("\nDigite o Nome do Fabricante:");
-            scanf("%s", var);
+			getchar();
+            scanf("%[^\n]", var);
             colunas = insereValor(colunas, "NomeFat", var);         
 
             erro = finalizaInsert("Fabricante", colunas);                       
@@ -421,19 +427,23 @@ void insere(int menu){
             
         case 4:  
             printf("\nDigite RG do Proprietário do Veículo:");
-            scanf("%s", var);
+            getchar();
+            scanf("%[^\n]", var);
             colunas = insereValor(colunas, "Rg", var);
             
             printf("\nDigite o Nome do Proprietário do Veículo:");
-            scanf("%s", var);
+            getchar();
+            scanf("%[^\n]", var);
             colunas = insereValor(colunas, "Nome", var);
             
             printf("\nDigite a data de nascimento do Proprietário do Veículo:");
-            scanf("%s", var);
+            getchar();
+            scanf("%[^\n]", var);
             colunas = insereValor(colunas, "DataNasc", var); 
             
             printf("\nDigite o Email do Proprietário do Veículo:");
-            scanf("%s", var);
+            getchar();
+            scanf("%[^\n]", var);
             colunas = insereValor(colunas, "Email", var);           
 
             erro = finalizaInsert("Proprietario", colunas);     
