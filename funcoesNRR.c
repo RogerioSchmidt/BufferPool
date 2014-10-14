@@ -262,7 +262,7 @@ void imprime(char nomeTabela[]) {
     
 void insere(int menu){
     int nrTabelas,erro, object, schema, carro, modelo, fabricante, proprietario;  
-    char var[10];
+    char var[100];
 	nrTabelas = 4;
     table  *tab[nrTabelas];
     column *colunas = NULL;
@@ -307,10 +307,10 @@ void insere(int menu){
         //Proprietário
         if(!proprietario){
             tab[3] = iniciaTabela("Proprietario");
-            tab[3] = adicionaCampo(tab[3], "Rg"        , 'S', 10);    
-            tab[3] = adicionaCampo(tab[3], "Nome"      , 'S', 15);    
+            tab[3] = adicionaCampo(tab[3], "Rg"        , 'S', 12);    
+            tab[3] = adicionaCampo(tab[3], "Nome"      , 'S', 45);    
             tab[3] = adicionaCampo(tab[3], "DataNasc"  , 'S', 15);    
-            tab[3] = adicionaCampo(tab[3], "Email"     , 'S', 20);    
+            tab[3] = adicionaCampo(tab[3], "Email"     , 'S', 50);    
             erro = finalizaTabela(tab[3]); 
         }
     }
