@@ -389,7 +389,7 @@ void insere(int menu){
             scanf("%[^\n]", var);
             colunas = insereValor(colunas, "Rg", var);
             
-            printf("\nDigite o Nome do Proprietário do Veículo:");
+            printf("\nDigite o Nome do Proprietário do Veículo (até 11 catcteres):");
             getchar();
             scanf("%[^\n]", var);
             colunas = insereValor(colunas, "Nome", var);
@@ -399,7 +399,7 @@ void insere(int menu){
             scanf("%[^\n]", var);
             colunas = insereValor(colunas, "DataNasc", var); 
             
-            printf("\nDigite o Email do Proprietário do Veículo:");
+            printf("\nDigite o Email do Proprietário do Veículo (até 11 catcteres):");
             getchar();
             scanf("%[^\n]", var);
             colunas = insereValor(colunas, "Email", var);           
