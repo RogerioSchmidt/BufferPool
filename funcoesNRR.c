@@ -16,7 +16,7 @@
 |* FUNÇÃO: Utilizada no controle do 'menu', com todas as opcoes.                   */   
 
 void menu(){
-    int acao,  continua, opcao, y;
+    int acao, opcao, y;
     char c[5];
     y = 1;
 
@@ -156,27 +156,27 @@ void menu(){
         
             switch (acao){
                 case 1:
-                    excluir("Carro");
+                    excluirArquivo("Carro");
                     printf("\nDigite algum número para voltar\n");
                     scanf("%s", c);
                     break;
 
                 case 2:
-                    excluir("Modelo");
+                    excluirArquivo("Modelo");
                     printf("\nDigite algum número para voltar\n");
                     scanf("%s", c);
 
                     break;
 
                 case 3:
-                    excluir("Fabricante");
+                    excluirArquivo("Fabricante");
                     printf("\nDigite algum número para voltar\n");
                     scanf("%s", c);
 
                     break;
 
                 case 4:
-                    excluir("Proprietario");
+                    excluirArquivo("Proprietario");
                     printf("\nDigite algum número para voltar\n");
                     scanf("%s", c);
                 
@@ -436,6 +436,8 @@ int existeArquivo(const char* filename){
     return 0;
 }
 
+/***********************************************************************************|
+|* FUNÇÃO: Exclui a tabela com 'nomeTabela'                                        */   
 void excluirArquivo(char nome[]){
 
     char str[20]; 
@@ -459,11 +461,4 @@ void excluirArquivo(char nome[]){
         fwrite("\0", 1, 1, fptr);
     }
 }
-
-/***********************************************************************************|
-|* FUNÇÃO: Exclui a tabela com 'nomeTabela'                                        */   
     
-void excluir(char nomeTabela[]){
-    
-    excluirArquivo(nomeTabela);
-}

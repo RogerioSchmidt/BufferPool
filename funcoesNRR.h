@@ -21,4 +21,4 @@ void imprime(char nomeTabela[] );
 int existeArquivo(const char* filename);
 
 //excluir: Exclui a tabela com 'nomeTabela'    
-void excluir(char nomeTabela[] );
+void excluirArquivo(char nomeTabela[] );
