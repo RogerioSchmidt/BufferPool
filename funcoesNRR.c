@@ -8,7 +8,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "buffend.c"
+#include <string.h>
+#include "buffend.h"
 #include "funcoesNRR.h"
 
 /***********************************************************************************|
@@ -16,11 +17,12 @@
 
 void menu(){
     int acao,  continua, opcao, y;
-    system("clear");
+    char c[5];
     y = 1;
 
     while(y){
         system("clear");
+        
         printf(" -> Tabela Carro\n"
             " -> Tabela Modelo \n"
             " -> Tabela Fabricante \n"
@@ -29,11 +31,9 @@ void menu(){
         printf( "\nDentre as tabelas acima, digite: \n1 - Inserir valores\n2 - Imprimir valores\n3 - Excluir valores\n4 - Sair");
         printf("\nOpcao -> ");
         scanf("%d",&opcao);
-        system("clear");
 
         if(opcao == 1){     //inserir valores
-                                   
-            system("clear");
+            system("clear");                                        
             printf(" 1- Tabela Carro\n"
                 " 2- Tabela Modelo \n"
                 " 3- Tabela Fabricante \n"
@@ -43,52 +43,27 @@ void menu(){
             printf( "\nEscolha a tabela, dentre uma das mencionadas acima, para inserir valores");
             printf("\nOpcao -> ");
             scanf("%d",&acao);
-            system("clear");
         
             switch (acao){
 
                 case 1:     //cadastrar usuarios
-                    continua = 1;
-                    while(continua==1){
-                        insere(1);
-                        system("clear");
-                        printf("\nDigite 1 para inserir outra Tupla na mesma Tabela. Outro numero para voltar ao menu principal:");
-                        scanf("%d", &continua);
-                    }//while
-                    
+                    insere(1);
+
                     break;  
 
                 case 2:
-                    continua = 1;
-                    while(continua == 1){
-                        insere(2);
-                        system("clear");
-                        printf("\nDigite 1 para inserir outra Tupla na mesma Tabela. Outro numero para voltar ao menu principal: ");
-                        scanf("%d", &continua);
-                    }
-                    
+                    insere(2);
+
                     break;  
 
                 case 3:
-                    continua = 1;
-                    while(continua){
-                        insere(3);
-                        system("clear");
-                        printf("\nDigite 1 para inserir outra Tupla na mesma Tabela. Outro numero para voltar ao menu principal: ");
-                        scanf("%d", &continua);
-                    }//while
+                    insere(3);
 
                     break;     
 
                 case 4:
-                    continua = 1;
-                    while(continua == 1){
-                        insere(4);
-                        system("clear");
-                        printf("\nDigite 1 para inserir outra Tupla na mesma Tabela. Outro numero para voltar ao menu principal: ");
-                        scanf("%d", &continua);
-                    }
-                    
+                    insere(4);
+
                     break;        
 
                 case 5:     
@@ -96,149 +71,131 @@ void menu(){
                     break;
         
                 default:
-                    printf("\nVoce digitou uma opcao invalida! \n\nDigite qualquer numero para voltar ao menu principal... ");
-                    scanf("%d", &continua);    
+                    printf("\nOpção invalida! Digite algum número para voltar\n");
+                    scanf("%s", c);
+
                     break;      //default
             }   
                     
         }
         else if(opcao == 2){ //imprimir tabelas
         
-            continua = 1;     
-            while(continua==1){
+            system("clear");
+            printf(" 1- Tabela Carro\n"
+                   " 2- Tabela Modelo \n"
+                   " 3- Tabela Fabricante \n"
+                   " 4- Tabela Proprietário\n"
+                   " 5- Retornar ao menu Principal\n"
+                   " 6- Sair\n");
+
+            printf( "\nEscolha a tabela para imprimir, dentre uma das mencionadas acima.");
+            printf("\nOpcao -> ");
+            scanf("%d",&acao);
+            
+            switch (acao){
+                case 1:
+                    system("clear");
+                    imprime("Carro");
+                    printf("Digite algum número para voltar\n");
+                    scanf("%s", c);
+
+                    break;
+
+                case 2:
+                    system("clear");
+                    imprime("Modelo");
+                    printf("Digite algum número para voltar\n");
+                    scanf("%s", c);
+                
+                    break;
+
+                case 3:
+                    system("clear");
+                    imprime("Fabricante");
+                    printf("Digite algum número para voltar\n");
+                    scanf("%s", c);
+
+                    break;  
+
+                case 4:
+                    system("clear");
+                    imprime("Proprietario");
+                    printf("Digite algum número para voltar\n");
+                    scanf("%s", c);
+                
+                    break;
+
+                case 5:
+                                        
+                    break;
+
+                case 6:     //opcao sair do programa
+                    return;
+                    break;
         
-                system("clear");
-                printf(" 1- Tabela Carro\n"
-                    " 2- Tabela Modelo \n"
-                    " 3- Tabela Fabricante \n"
-                    " 4- Tabela Proprietário\n"
-                    " 5- Retornar ao menu Principal\n"
-                    " 6- Sair\n");
+                default:
+                    printf("\nOpção invalida! Digite algum número para voltar\n");
+                    scanf("%s", c);
 
-                printf( "\nEscolha a tabela para imprimir, dentre uma das mencionadas acima.");
-                printf("\nOpcao -> ");
-                scanf("%d",&acao);
-                system("clear");
-            
-                switch (acao){
-                    case 1:
-                        system("clear");
-                        imprime("Carro");
-                        printf("\nDigite 1 para voltar ao menu de impressao, outro numero para o menu principal:");
-                        scanf("%d", &continua);
-                        
-                        break;
-
-                    case 2:
-                        system("clear");
-                        imprime("Modelo");
-                        printf("\nDigite 1 para voltar ao menu de impressao, outro numero para o menu principal:");
-                        scanf("%d", &continua);
-                    
-                        break;
-
-                    case 3:
-                        system("clear");
-                        imprime("Fabricante");
-                        printf("\nDigite 1 para voltar ao menu de impressao, outro numero para o menu principal:");
-                        scanf("%d", &continua);
-
-                        break;  
-
-                    case 4:
-                        system("clear");
-                        imprime("Proprietario");
-                        printf("\nDigite 1 para voltar ao menu de impressao, outro numero para o menu principal:");
-                        scanf("%d", &continua);
-                    
-                        break;
-
-                    case 5:
-                        continua = 2;
-                        
-                        break;
-
-                    case 6:     //opcao sair do programa
-                        return;
-                        break;
-            
-                    default:
-                        printf("\nVoce digitou uma opcao invalida! \n\ndigite 1 para voltar ao menu de impressao, outro numero para o menu principal:");
-                        scanf("%d", & continua);    
-
-                        break;  //default
-                }
+                    break;  //default
             }
             
-        }
-        else if(opcao == 4){    //sair
-            return;
         }
         else if(opcao == 3){
             
-            continua = 1;     
-            while(continua==1){
-                system("clear");
-                printf(" 1- Tabela Carro\n"
-                    " 2- Tabela Modelo \n"
-                    " 3- Tabela Fabricante \n"
-                    " 4- Tabela Proprietário\n"
-                    " 5- Sair\n");
+            system("clear");
+            printf(" 1- Tabela Carro\n"
+                " 2- Tabela Modelo \n"
+                " 3- Tabela Fabricante \n"
+                " 4- Tabela Proprietário\n"
+                " 5- Sair\n");
 
-                printf( "\nEscolha a tabela, dentre uma das mencionadas acima para exclui-la");
-                printf("\nOpcao -> ");
-                scanf("%d",&acao);
-                system("clear");
-            
-                switch (acao){
-                    case 1:
-                        system("clear");
-                        excluir("Carro");
-                        printf("\nDigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
-                        scanf("%d", &continua);
-                        
-                        break;
+            printf( "\nEscolha a tabela, dentre uma das mencionadas acima para exclui-la");
+            printf("\nOpcao -> ");
+            scanf("%d",&acao);
+        
+            switch (acao){
+                case 1:
+                    excluir("Carro");
+                    printf("\nDigite algum número para voltar\n");
+                    scanf("%s", c);
+                    break;
 
-                    case 2:
-                        system("clear");
-                        excluir("Modelo");
-                        printf("\nDigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
-                        scanf("%d", &continua);
-                    
-                        break;
+                case 2:
+                    excluir("Modelo");
+                    printf("\nDigite algum número para voltar\n");
+                    scanf("%s", c);
 
-                    case 3:
-                        system("clear");
-                        excluir("Fabricante");
-                        printf("\nDigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
-                        scanf("%d", &continua);
+                    break;
 
-                        break;
+                case 3:
+                    excluir("Fabricante");
+                    printf("\nDigite algum número para voltar\n");
+                    scanf("%s", c);
 
-                    case 4:
-                        system("clear");
-                        excluir("Proprietario");
-                        printf("\nDigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
-                        scanf("%d", &continua);
-                    
-                        break;            
+                    break;
 
-                    case 5:     //opcao sair do programa
-                        return;
-                        break;
-            
-                    default:
-                        printf("\nVoce digitou uma opcao invalida! \n\ndigite 1 para voltar ao menu de exclusao, outro numero para o menu principal:");
-                        scanf("%d", & continua);    
+                case 4:
+                    excluir("Proprietario");
+                    printf("\nDigite algum número para voltar\n");
+                    scanf("%s", c);
+                
+                    break;            
 
-                        break;   //default
-                }
+                case 5:     //opcao sair do programa
+                    return;
+                    break;
+        
+                default:
+                    printf("\nOpção invalida! Digite algum número para voltar\n");
+                    scanf("%s", c);
+
+                    break;   //default
             }
             
+        }else if(opcao == 4){    //sair
+            return;
         }
-        else{      //opcao invalida
-            y = 1;
-        }  
     } 
 }
 
@@ -272,11 +229,12 @@ void imprime(char nomeTabela[]) {
     column *pagina = getPage(bufferpoll, esquema, objeto, 0);
 
     if(pagina == ERRO_PARAMETRO){
-        printf("Erro, na função getPage(), problemas no parametro.\n");
+        printf("Tabela Vazia\n");
         return ;
     }
     
     // PARA IMPRIMIR PÁGINA
+    printf("Quantidade: %d\n", bufferpoll[0].nrec);
     for(j=0; j < objeto.qtdCampos*bufferpoll[0].nrec; j++){
         
         if(pagina[j].tipoCampo == 'S')
@@ -456,7 +414,7 @@ void insere(int menu){
             break;
     }
 
-    if(!erro){
+    if(erro != 0){
         printf("Erro na criação das tabelas!\n");
         return;
     }
@@ -478,50 +436,34 @@ int existeArquivo(const char* filename){
     return 0;
 }
 
+void excluirArquivo(char nome[]){
+
+    char str[20]; 
+    strcpy( str, nome); 
+    char dat[5] = ".dat";
+    strcat (str, dat);
+
+    if(!existeArquivo(str)){
+        printf("Arquivo não existe!\n");
+        return;
+    }
+
+    FILE* fptr = fopen(str, "w");
+    if(fptr != NULL){
+        fclose(fptr);
+
+        return;
+    }
+
+    while(getc(fptr) != EOF){
+        fwrite("\0", 1, 1, fptr);
+    }
+}
+
 /***********************************************************************************|
 |* FUNÇÃO: Exclui a tabela com 'nomeTabela'                                        */   
     
 void excluir(char nomeTabela[]){
-    int status, x, j;
     
-    struct fs_objects objeto = leObjeto(nomeTabela);    
-    tp_table  *esquema     = leSchema(objeto);
-    tp_buffer *bufferpoll = initbuffer();
-
-    status = SUCCESS;
-    for(x = 0; status == SUCCESS; x++)
-        status = colocaTuplaBuffer(bufferpoll, x, esquema, objeto);    
-
-    column *tuplaE = excluirTuplaBuffer(bufferpoll, esquema, objeto, 0, x - 2); //pg, tupla
-    //column *pagina = getPage(bufferpoll, esquema, objeto, 0);
-
-
-    if(tuplaE == ERRO_PARAMETRO){
-        printf("Erro na função excluirTuplaBuffer(), problemas no parametro.\n");
-        return;
-    }
-    /*if(pagina == ERRO_PARAMETRO){
-        printf("Erro na função getPage(), problemas no parametro.\n");
-        return;
-    }*/
-        
-    // PARA IMPRIMIR TUPLA EXCLUIDA 
-    printf("\nTupla excluída do Buffer.\n");
-    for(j = 0; j < objeto.qtdCampos; j++){
-        
-        if(tuplaE[j].tipoCampo == 'S')
-            printf("%s: %s ", tuplaE[j].nomeCampo,tuplaE[j].valorCampo);
-        else if(tuplaE[j].tipoCampo == 'I'){
-            int *n = (int *)&tuplaE[j].valorCampo[0];
-            printf("%s: %d ",tuplaE[j].nomeCampo, *n);
-        }
-        else if(tuplaE[j].tipoCampo == 'C'){
-            printf("%s: %c ",tuplaE[j].nomeCampo, tuplaE[j].valorCampo[0]);
-        }
-        else if(tuplaE[j].tipoCampo == 'D'){
-            double *n = (double *)&tuplaE[j].valorCampo[0];
-            printf("%s: %f ",tuplaE[j].nomeCampo, *n);
-        }
-        printf("\n");
-    }
+    excluirArquivo(nomeTabela);
 }

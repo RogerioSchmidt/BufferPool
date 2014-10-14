@@ -21,3 +21,15 @@ Criado a função "int existeArquivo(const char* filename)", que recebe como par
 o nome do arquivo a ser criado. Caso este já exista, a função retorna 1, caso
 contrário retorna 0. Isto é utilizado sempre antes de criar um novo arquivo .dat
 /------------------------------------------------------------------------------
+
+/------------------------------------------------------------------------------
+13/10/2014
+Arquivo: Nossobuffer.c e buffend.c
+Função: excluirTuplaBuffer
+Linha: 602
+Descrição: Quando tentado excluir a última tupla, o algoritmo não exclui,
+mas apenas diminui a quantidade de registros na tabela e deixando a ultima
+tupla que deveria ser excluída ainda no .dat.
+Solução: Foi criado duas funções para limpar o conteúdo do arquivo.dat, a função
+apaga todo o conteudo.
+/------------------------------------------------------------------------------
