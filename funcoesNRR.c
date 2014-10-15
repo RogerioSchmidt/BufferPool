@@ -38,7 +38,7 @@ void menu(){
                 " 2- Tabela Modelo \n"
                 " 3- Tabela Fabricante \n"
                 " 4- Tabela Proprietário\n"
-                " 5- Sair\n");
+                " 5- Voltar\n");
 
             printf( "\nEscolha a tabela, dentre uma das mencionadas acima, para inserir valores");
             printf("\nOpcao -> ");
@@ -67,7 +67,6 @@ void menu(){
                     break;        
 
                 case 5:     
-                    return;
                     break;
         
                 default:
@@ -157,33 +156,32 @@ void menu(){
             switch (acao){
                 case 1:
                     excluirArquivo("Carro");
-                    printf("\nDigite algum número para voltar\n");
+                    printf("Digite alguma tecla para voltar.\n");
                     scanf("%s", c);
                     break;
 
                 case 2:
                     excluirArquivo("Modelo");
-                    printf("\nDigite algum número para voltar\n");
+                    printf("Digite alguma tecla para voltar.\n");
                     scanf("%s", c);
 
                     break;
 
                 case 3:
                     excluirArquivo("Fabricante");
-                    printf("\nDigite algum número para voltar\n");
+                    printf("Digite alguma tecla para voltar.\n");
                     scanf("%s", c);
 
                     break;
 
                 case 4:
                     excluirArquivo("Proprietario");
-                    printf("\nDigite algum número para voltar\n");
+                    printf("Digite alguma tecla para voltar.\n");
                     scanf("%s", c);
                 
                     break;            
 
                 case 5:     //opcao sair do programa
-                    return;
                     break;
         
                 default:
@@ -284,7 +282,7 @@ void insere(int menu){
             tab[0] = adicionaCampo(tab[0], "Ano"        , 'I', (sizeof(int)));
             tab[0] = adicionaCampo(tab[0], "Modelo"     , 'I', (sizeof(int)));
             tab[0] = adicionaCampo(tab[0], "Motor"      , 'S', 10);
-            erro = finalizaTabela(tab[0]);
+            erro   = finalizaTabela(tab[0]);
         }
 
         //Modelo
@@ -293,7 +291,7 @@ void insere(int menu){
             tab[1] = adicionaCampo(tab[1], "Modelo"     , 'S', 10);
             tab[1] = adicionaCampo(tab[1], "NomeMod"    , 'S', 20);
             tab[1] = adicionaCampo(tab[1], "Fabricante" , 'S', 20);
-            erro = finalizaTabela(tab[1]);
+            erro   = finalizaTabela(tab[1]);
         }
 
         //Fabricante
@@ -301,7 +299,7 @@ void insere(int menu){
             tab[2] = iniciaTabela("Fabricante"); 
             tab[2] = adicionaCampo(tab[2], "FatCod"    , 'S', 10);
             tab[2] = adicionaCampo(tab[2], "NomeFat"   , 'S', 20);
-            erro = finalizaTabela(tab[2]);
+            erro   = finalizaTabela(tab[2]);
         }
 
         //Proprietário
@@ -311,7 +309,7 @@ void insere(int menu){
             tab[3] = adicionaCampo(tab[3], "Nome"      , 'S', 45);    
             tab[3] = adicionaCampo(tab[3], "DataNasc"  , 'S', 15);    
             tab[3] = adicionaCampo(tab[3], "Email"     , 'S', 50);    
-            erro = finalizaTabela(tab[3]); 
+            erro   = finalizaTabela(tab[3]); 
         }
     }
 
@@ -447,6 +445,7 @@ void excluirArquivo(char nome[]){
     strcat (str, dat);              //Concatena e junta o nome com .dat
 
     if(!existeArquivo(str)){
+        system("clear");
         printf("Arquivo não existe!\n");
         return;
     }
@@ -461,4 +460,7 @@ void excluirArquivo(char nome[]){
     while(getc(fptr) != EOF){       //Adiciona \0 no arquivo inteiro.
         fwrite("\0", 1, 1, fptr);
     }
+
+    printf("\nTodos os registros da tabela %s foram excluídos.\n"
+           "Digite algum número para voltar\n", nome);
 }
