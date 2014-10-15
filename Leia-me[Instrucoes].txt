@@ -54,6 +54,12 @@ Sobre o dicionário de dados e o esquema:
 		1B que representa o tipo do campo;
 		4B que representa o tamanho do campo.
 
+		
+Sobre os arquivos criados:
+	    -> buffNRR.c : Contém a main e a chamada para a função menu().
+	    -> funcoesNRR.c : Contém a aplicação de todas as funções usadas no programa.
+	    -> funcoesNRR.h : Esse arquivo possui as structs e prototipos das funções.
+	    -> relatorio_bugs: Arquivo que contém a descrição dos bugs e problemas encontrados, função que gerou, forma que foi gerado, entre outros
 	
 Da compilação:
 
