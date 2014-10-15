@@ -234,7 +234,7 @@ void imprime(char nomeTabela[]) {
     }
     
     // PARA IMPRIMIR PÁGINA
-    printf("Quantidade: %d\n", bufferpoll[0].nrec);
+    printf("Número de tuplas: %d\n", bufferpoll[0].nrec);
     for(j=0; j < objeto.qtdCampos*bufferpoll[0].nrec; j++){
         
         if(pagina[j].tipoCampo == 'S')
@@ -263,7 +263,7 @@ void imprime(char nomeTabela[]) {
 void insere(int menu){
     int nrTabelas,erro, object, schema, carro, modelo, fabricante, proprietario;  
     char var[100];
-	nrTabelas = 4;
+    nrTabelas = 4;
     table  *tab[nrTabelas];
     column *colunas = NULL;
     
@@ -327,7 +327,7 @@ void insere(int menu){
             colunas = insereValor(colunas, "Kms", var);
             
             printf("\nDigite a Data da Compra:");
-			getchar();
+            getchar();
             scanf("%[^\n]", var);
             colunas = insereValor(colunas, "DataCompra", var);
             
@@ -375,7 +375,7 @@ void insere(int menu){
             colunas = insereValor(colunas, "FatCod", var);
             
             printf("\nDigite o Nome do Fabricante:");
-			getchar();
+            getchar();
             scanf("%[^\n]", var);
             colunas = insereValor(colunas, "NomeFat", var);         
 
@@ -418,7 +418,6 @@ void insere(int menu){
         printf("Erro na criação das tabelas!\n");
         return;
     }
-
     
 }
         
@@ -437,13 +436,15 @@ int existeArquivo(const char* filename){
 }
 
 /***********************************************************************************|
-|* FUNÇÃO: Exclui a tabela com 'nomeTabela'                                        */   
+|* FUNÇÃO: Exclui a tabela com 'nome'                                              */   
+
 void excluirArquivo(char nome[]){
 
     char str[20]; 
-    strcpy( str, nome); 
     char dat[5] = ".dat";
-    strcat (str, dat);
+    
+    strcpy (str, nome); 
+    strcat (str, dat);              //Concatena e junta o nome com .dat
 
     if(!existeArquivo(str)){
         printf("Arquivo não existe!\n");
@@ -451,14 +452,13 @@ void excluirArquivo(char nome[]){
     }
 
     FILE* fptr = fopen(str, "w");
-    if(fptr != NULL){
+    if(fptr != NULL){   
         fclose(fptr);
 
         return;
     }
 
-    while(getc(fptr) != EOF){
+    while(getc(fptr) != EOF){       //Adiciona \0 no arquivo inteiro.
         fwrite("\0", 1, 1, fptr);
     }
 }
-    
